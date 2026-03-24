@@ -1,102 +1,70 @@
 
 
-# Plan: Partner Ecosystem Hub + Launch Plan Integration
+# Plan: Peak Pickleball Venue Portal Transformation
 
-## The Big Picture
+## Summary
+Transform the entire app into a customized portal for Peak Pickleball with real dates (April 7 - June 1, 2026), real quotes from Chris Kepko, Peak-specific events, updated economics, and a password-gated dashboard.
 
-You've built a constellation of pickleball sites -- each serves a different layer of the Courtana value chain. This plan adds two things to **this site** (Courtana Connect):
+## Changes
 
-1. **A new `/partners` page** -- a visual ecosystem hub that maps the Courtana partner network, linking out to your live Lovable sites
-2. **Launch plan weeks reference partners** -- each week on the landing page gets a subtle partner tie-in (sponsor badge, "powered by" link)
+### 1. Global Updates
+- **`index.html`**: Title → "Courtana × Peak Pickleball", update meta description
+- **`src/components/Navbar.tsx`**: Simplify nav to "The Plan | Events | Dashboard (🔒)" only. Remove Schedule, Discovery, Ecosystem, About links.
 
-Later, you can build a **standalone Courtana Hub** site that's the master directory across all properties. For now, this site becomes the anchor.
+### 2. Landing Page (`src/pages/Landing.tsx`) — Major Rewrite
 
----
+**Hero**: Badge → "🟢 Live Partnership Portal". Subheadline → "Smart courts. Real data. Zero risk. Your 8-week launch plan starts April 7." Stats → "4 Smart Courts | $0 Upfront | May 9 Grand Opening | 300-Player Tournament"
 
-## New Page: `/partners` -- The Courtana Ecosystem
+**New "What We Heard" section** after hero: Three pull-quote cards with green left border from Chris Kepko (the $1.5M facility quote, gamification/badges quote, and 16-court expansion quote).
 
-A premium, visual page showing how Courtana connects venues, coaches, brands, players, and technology into one flywheel.
+**Value Props** — Replace all 6 with Peak-specific cards: Cameras on 4 Courts, We Run Your Events, AI Coaching at $20-25, Gamification That Sticks, Open Play Solved, Live Broadcast to the Highway.
 
-### Layout
+**8-Week Timeline** — Replace with real dates anchored to Peak's calendar (April 7 through June 1). Each week gets specific tags (LAUNCH/EVENTS/DATA/GROWTH/REVIEW), real deliverables, and Peak-specific descriptions as specified.
 
-**Hero**: "The Courtana Ecosystem" headline. Subtitle: "Smart courts. Connected partners. Infinite possibilities." Dark background with the green/gold gradient treatment.
+**Economics** — Update KPIs to: $0 pilot investment, $95/court/mo post-pilot, $2,000-4,000/mo projected lift. Revenue table: 5 rows with Premium court pricing, AI coaching, Tournament revenue share, Walk-in/guest fees, Open play optimization across Conservative/Realistic/Upside columns totaling $1,200/$2,650/$4,100. Add "Zero Risk" callout box.
 
-**Interactive Flywheel Diagram**: A circular/radial visual showing the 5 ecosystem layers:
-- **Smart Courts** (center) -- courtana.com
-- **Coaching** -- Coach Connect, Casey/Kings Court Coach
-- **Events & Community** -- Paddles & Pals, tournaments
-- **Equipment & Brands** -- Freakshow Paddles
-- **Technology & Builds** -- VibeCo Labs, Layup Lab
+### 3. Events Page (`src/data/events.ts` + `src/pages/Events.tsx`) — Replace All Events
 
-Each node is clickable and expands to show a partner card.
+Replace the 6 seed events with Peak-specific events:
+1. Peak Spring Smash Tournament (May 1-4, $40, 300 spots)
+2. Courtana Court Preview: Coaches Only (April 14, Free/invite only, 10 spots)
+3. Open Play Happy Hour (Every Thursday from April 17, $10/members free)
+4. AI Coaching Clinic: Third Shot Mastery (April 22, $25, 16 spots)
+5. Friday Night Lights: Live Broadcast (Every Friday from May 16, Free/$5)
+6. Charity Round Robin (May 17, $20, 24 spots)
 
-**Partner Cards Grid**: Each partner gets a card with:
-- Partner name and logo/icon
-- One-line description
-- Category tag (Coaching / Equipment / Community / Technology / Venue)
-- Status badge: "Live" (green), "In Development" (amber), "Coming Soon" (muted)
-- "Visit Site" button linking to the published Lovable URL
-- "How it connects" blurb explaining the value chain link
+**Featured event** (full-width card at top): Peak Pickleball Grand Opening — Dinks & Drinks with Chris Kelly (May 9, $15).
 
-### Partners to Feature
+Each card CTA opens a booking modal (already exists in EventDetail — add inline modal to Events page too). Bottom CTA: "Want to host your own event?" → mailto:bill@courtana.com.
 
-| Partner | Category | URL | Status |
-|---------|----------|-----|--------|
-| Courtana Smart Courts | Core Platform | courtana.com | Live |
-| Courtana Coach Connect | Coaching Ecosystem | courtana-coach-play.lovable.app | Live |
-| Kings Court Coach (Casey) | Individual Coach | (published URL) | Live |
-| Freakshow Paddles | Equipment Brand | freakfosho.lovable.app | Live |
-| Paddles & Pals | Community Hub | (published URL) | Live |
-| Layup Lab | Analytics/Training | layuplab.lovable.app | Live |
-| VibeCo Labs | Builder/Agency | vibeco.lovable.app | Live |
+### 4. Dashboard Page (`src/pages/Dashboard.tsx`) — Password-Gated Rewrite
 
-Plus 3-4 "opportunity slots" styled as ghost cards: "Your Brand Here", "Tournament Organizer", "Beverage Sponsor", "Apparel Partner" -- showing the ecosystem is open for expansion.
+**Password gate**: Centered card, "Peak Pickleball — Pilot Dashboard", password input, hardcode "peak2026". Store auth in sessionStorage.
 
-**"How It Works" Section**: Three cards explaining the business model:
-1. **We Build It** -- VibeCo builds partner sites from zero to live in hours
-2. **We Connect It** -- Courtana smart courts link everything: data, players, events
-3. **We Grow It** -- Marketing flywheel drives traffic, engagement, and revenue across partners
+**Dashboard content** (after auth):
+- Header: "Peak Pickleball — Pilot Dashboard" + "Week 1 of 8" badge + "April 7 — June 1, 2026"
+- KPI row (4 cards): Sessions Recorded: 0, Highlights Generated: 0, Event Revenue: $0, Player Accounts: 0 — all with "Pilot starts April 7" subtext
+- Line chart: Court Utilization (Courtana Courts vs Standard) over 8 weeks with slight upward trend
+- Bar chart: Revenue by Source (Court Premium, Coaching, Events, Walk-ins, AI Reviews)
+- Event Performance table: The 6 events + featured event with Date, Capacity, Registered, Revenue, Status badges
+- Pilot Scorecard: Target metrics (15% utilization lift, $2,000/mo revenue, 50+ accounts) vs current status, "Starting Soon" badge
 
-**CTA**: "Want to join the ecosystem?" contact form or link to the About page contact section.
+### 5. Files Changed
 
----
+**Modified:**
+- `index.html` — title + meta
+- `src/components/Navbar.tsx` — simplified nav links + 🔒 icon on Dashboard
+- `src/pages/Landing.tsx` — complete content rewrite (hero, quotes, value props, timeline, economics)
+- `src/pages/Events.tsx` — add featured event card + inline booking modal + mailto CTA
+- `src/pages/Dashboard.tsx` — password gate + zero-state dashboard with charts
+- `src/data/events.ts` — replace all 6 events + add featured event data
 
-## Landing Page Updates
+**No new files needed** — all components and pages already exist.
 
-### Week-Partner Mapping (Hybrid)
-
-Each week card in the launch timeline gets an optional "Partner Spotlight" badge:
-
-- **Week 1** (Launch Party) -- "Sponsored by" + beverage partner slot + paddle partner (Freakshow)
-- **Week 2** (Coaching Clinics) -- "Hosted by" + Coach Connect ecosystem badge
-- **Week 3** (Round Robin) -- "Community by" + Paddles & Pals
-- **Week 4** (Gamification) -- "Powered by" + Courtana Smart Courts
-- **Week 5** (Premium Pricing) -- "Analytics by" + Layup Lab
-- **Week 6** (Pro-Am) -- "Featured Coach" + Casey / Kings Court Coach
-- **Week 7** (Matchmaking) -- "Powered by" + Courtana AI
-- **Week 8** (ROI Report) -- "Built by" + VibeCo Labs
-
-Each badge links to the partner's live site. Subtle, not cluttering the week card -- a small pill below the deliverables.
-
-### New "Ecosystem" CTA on Landing
-
-Between the economics section and the final CTA, add a compact section: "Part of Something Bigger" with a mini version of the flywheel graphic and a "View the Ecosystem →" button linking to `/partners`.
-
----
-
-## Files to Create
-- `src/pages/Partners.tsx` -- full ecosystem hub page
-- `src/components/partners/EcosystemFlywheel.tsx` -- interactive radial diagram
-- `src/components/partners/PartnerCard.tsx` -- reusable partner card component
-
-## Files to Modify
-- `src/App.tsx` -- add `/partners` route
-- `src/components/Navbar.tsx` -- add "Ecosystem" nav link
-- `src/pages/Landing.tsx` -- add partner badges to week cards + ecosystem CTA section
-
-## Technical Notes
-- Partner data stored as a typed array in `src/data/partners.ts` with URLs, categories, status, descriptions
-- Flywheel uses CSS/SVG with framer-motion hover animations -- no heavy charting library needed
-- All partner URLs are external links (`target="_blank"`) to published Lovable apps
-- Partner cards use the existing glass card design system with category-colored accents
+### Technical Notes
+- Password gate uses `useState` + `sessionStorage.getItem/setItem` pattern
+- Events dates use ISO format for `date-fns` parsing (2026-04-xx, 2026-05-xx)
+- Dashboard charts use recharts (already imported in current Dashboard)
+- Booking modal pattern already exists in EventDetail — reuse in Events page
+- Remove partner badge references from timeline (weekPartners) since nav is simplified
 
