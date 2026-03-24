@@ -197,6 +197,17 @@ const Landing = () => {
                       <span key={d} className="text-sm px-4 py-1.5 rounded-full bg-secondary text-muted-foreground font-medium">{d}</span>
                     ))}
                   </div>
+                  {weekPartners[w.num] && (
+                    <a
+                      href={weekPartners[w.num].url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 mt-4 text-xs px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20 transition-colors w-fit"
+                    >
+                      {weekPartners[w.num].label} <span className="font-bold">{weekPartners[w.num].partnerName}</span>
+                      <ExternalLink size={10} />
+                    </a>
+                  )}
                 </div>
               </motion.div>
             ))}
