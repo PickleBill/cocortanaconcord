@@ -8,6 +8,7 @@ import EventDetail from "./pages/EventDetail";
 import Schedule from "./pages/Schedule";
 import Dashboard from "./pages/Dashboard";
 import About from "./pages/About";
+import Discovery from "./pages/Discovery";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/about" element={<About />} />
+          <Route path="/discovery" element={<Discovery />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
