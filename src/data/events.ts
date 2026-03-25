@@ -151,6 +151,7 @@ export const events: EventData[] = [
     whatsIncluded: ["Live broadcast", "Smart court recording", "Instant replay", "Leaderboard competition", "Spectator-friendly atmosphere"],
     whoItsFor: "Players ($5 to compete) and spectators (free). All levels welcome.",
     format: "Showcase matches on courts with live broadcast.",
+    revenueNote: "$5/player × 32 spots = $160/night + walk-in spectator traffic",
   },
   {
     id: "charity-round-robin",
