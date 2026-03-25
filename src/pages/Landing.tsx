@@ -364,7 +364,7 @@ const Landing = () => {
                   </div>
                 </div>
                 <video
-                  src="/videos/AI_Analysis_Roast_Coach.mp4"
+                  src="/videos/PEAK_AI_Analysis.mp4"
                   className="w-full aspect-video object-cover"
                   muted
                   playsInline
