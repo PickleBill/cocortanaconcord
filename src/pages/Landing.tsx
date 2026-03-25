@@ -416,6 +416,20 @@ const Landing = () => {
         </DialogContent>
       </Dialog>
 
+      {/* Roast Coach Modal */}
+      <Dialog open={roastModalOpen} onOpenChange={setRoastModalOpen}>
+        <DialogContent className="max-w-5xl p-0 bg-black border-foreground/10 overflow-hidden">
+          <DialogTitle className="sr-only">Roast Coach — AI Coaching Review</DialogTitle>
+          <video
+            src="/videos/AI_Analysis_Roast_Coach.mp4"
+            className="w-full aspect-video"
+            controls
+            autoPlay
+            playsInline
+          />
+        </DialogContent>
+      </Dialog>
+
       {/* 8-Week Timeline */}
       <section id="plan" className="py-24 px-4 bg-card/50">
         <div className="container mx-auto max-w-4xl">
