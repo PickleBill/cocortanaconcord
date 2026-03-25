@@ -218,6 +218,25 @@ const Landing = () => {
         </div>
       </section>
 
+      {/* Elevated Pull Quote */}
+      <section className="py-16 px-4 bg-card/30">
+        <div className="container mx-auto max-w-3xl">
+          <motion.div
+            className="text-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            <div className="text-5xl mb-6 text-primary/30">"</div>
+            <p className="text-xl md:text-2xl font-bold text-foreground leading-relaxed italic mb-6">
+              Members keep asking me for footage and I've got one GoPro cable-tied to the wall. I don't want to go find clips and send them to people.
+            </p>
+            <p className="text-base text-muted-foreground font-semibold">— Chris Williams, Concord Pickleball</p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Value Props */}
       <section className="py-24 px-4 bg-card/50">
         <div className="container mx-auto max-w-6xl">
