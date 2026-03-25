@@ -1,88 +1,98 @@
-
-
-# Concord Pickleball Fork — Full Content Swap
+# Ecosystem Expansion + Case Studies Section
 
 ## Overview
-Swap all Peak Pickleball content to Concord Pickleball across 7 files. Keep all architecture, animations, and page structure. Add 3 new landing page sections. No new files needed except imports.
 
-## Files to Modify
+Add 5 new ecosystem partners, update existing links, save 3 video assets, and restructure the landing page case study section into a multi-venue showcase. Seven Oaks gets a placeholder card (assets coming later).  
 
-### 1. `src/pages/Landing.tsx` — Major content swap + 3 new sections
+## Changes - > LOVE IT ALL.  To be clear, there's different types of ecosystem partners which you realize and venue is one of them and probably the most important one venues are the ecosystem partner that is going to be featured in the case study like Peak Pickleball, Underground, which is our primary one and the two in Austin, which are in the pipeline as in. We're gonna be there soon. Coming soon to Dieal. 7oak is in that category as well. And the other thing is I like the idea of the categories and in case it's not obvious like there are several that could be multi categorized so that's fine to do the color labels and make sure we have the ability to have multiple categories, but there should definitely still be a primary.  
 
-**Data arrays to replace:**
-- `stats` → 8 Indoor Courts, $0 Upfront Cost, 8 Week Pilot, 1 Camera Per Court
-- `quotes` → Chris Williams GoPro quote, "nobody's making money" quote, "pay for itself" quote. Attribution → "Chris Williams, Concord Pickleball"
-- `valueProps` → 6 new items: No More GoPro on the Wall, Events That Make Money, AI Coaching = New Revenue, Gamification That Retains, Highlights Members Will Pay For, Your Screens Working For You
-- `weeks` → Remove `dates` field from all 8 objects. Replace all titles/descriptions with generic versions (Install + Staff Preview, Community Launch Event, Coaching Clinic Series, Tournament Integration, Signature Event, Gamification Goes Live, Matchmaking + Open Play, The Numbers). Remove line 271 that renders `w.dates`.
-- `revenueStreams` → Ranges instead of fixed numbers ($200-400, $300-600, etc.). Totals: $750-1,750 / $2,050-4,100 / $4,100-7,300
+### 1. Partner Data (`src/data/partners.ts`)
 
-**Hero updates:** Badge → "Partnership Preview", headline → "Concord Pickleball", subheadline remove April 7 reference, second CTA → "Explore the Ecosystem" linking to /partners
+**Update existing entries:**
 
-**KPI cards:** $0 pilot, $95/court/mo (4 courts = $380, 8 courts = $760), $1,400+/mo projected
+- Peak Pickleball URL: `https://courtana-venue-connect.lovable.app` → `https://peakpickleball.club/`
+- Kings Court Coach (Casey) URL: duplicate coach-play URL → `https://racketscience.lovable.app`. Update description to "Elite Coaching Partners — powered by Courtana analytics and sport science methodology."
 
-**Timeline subtitle:** Remove "April 7 – June 1, 2026" → "Each week builds on the last. By week 8, you'll have hard data on ROI."
+**Add new category values** to the `PartnerCategory` type:
 
-**Zero Risk box:** New copy referencing GoPro, 4 courts starting point, $380/mo math
+- `"Influencer"` | `"Health & Wellness"` | `"Venue"`
 
-**Add italic note** below revenue table about projections depending on facility size
+**Add new partner entries:**
 
-**3 new sections inserted between Economics and CTA:**
 
-1. **"What a Partnership Looks Like"** — Two-column glass cards. Left (green border): What Courtana Brings (7 bullet items). Right (muted border): What We'd Love From You (6 bullet items). Subtext: "This is a partnership, not a purchase order."
+| Name                    | Category          | Status      | URL                                                                                                                                                  |
+| ----------------------- | ----------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Bryant (Padel Bryant)   | Influencer        | Live        | [https://www.instagram.com/padelbryant/](https://www.instagram.com/padelbryant/)                                                                     |
+| StretchLab              | Health & Wellness | Live        | [https://www.stretchlab.com/](https://www.stretchlab.com/)                                                                                           |
+| Urban Pickleball ATX    | Venue             | Live        | [https://www.pickleheads.com/courts/us/texas/austin/urban-pickleball-club](https://www.pickleheads.com/courts/us/texas/austin/urban-pickleball-club) |
+| Capital City Pickleball | Community         | Live        | [https://www.capitalcitypickleball.com/](https://www.capitalcitypickleball.com/)                                                                     |
+| Underground Pickleball  | Venue             | Live        | [https://courtana.com/highlight-group/TuuqWPwc26EO](https://courtana.com/highlight-group/TuuqWPwc26EO)                                               |
+| Seven Oaks              | Venue             | Coming Soon | (empty — assets coming)                                                                                                                              |
 
-2. **"Case Study: Peak Pickleball"** — Gold-bordered card with "Flagship Partner" badge, Peak stats (35 courts, 250 members), brief results paragraph, external link button to https://courtana-venue-connect.lovable.app
 
-3. **"Part of Something Bigger"** — Import and render `EcosystemFlywheel` (compact) on left, ecosystem text on right, "Explore the Ecosystem →" button to /partners
+**New icons needed:** `Instagram` or `Star` for Influencer, `Heart` for Health & Wellness, `MapPin` for Venue.
 
-**CTA section:** Headline → "Let's prove it works — together." Remove April 7 reference and calendar button. Buttons: Start a Conversation (mailto), View the Ecosystem (/partners), Pilot Dashboard (/dashboard)
+### 2. PartnerCard Category Colors (`src/components/partners/PartnerCard.tsx`)
 
-### 2. `src/data/events.ts` — Replace all events
+Add color mappings for the 3 new categories:
 
-7 genericized template events with placeholder dates in June/July 2026:
-- Launch Event (featured, Special, free, 200 spots)
-- Staff Preview (Clinic, free, invite only, 10 spots)
-- Open Play Night (Open Play, $10, 40 spots)
-- AI Coaching Clinic (Clinic, $25, 16 spots)
-- Community Tournament (Tournament, $40, 64 spots)
-- Friday Night Showcase (Special, $5, 32 spots)
-- Charity Round Robin (Tournament, $20, 24 spots)
+- `"Influencer"`: orange tones
+- `"Health & Wellness"`: rose/pink tones
+- `"Venue"`: blue tones
 
-### 3. `src/pages/Events.tsx` — Text and button updates
+### 3. Save Video Assets
 
-- Title: "Event Templates — Courtana × Concord"
-- Subtitle: "These events are included in your pilot..."
-- All booking buttons → "Customize This Event" with `variant="outline"`
-- Bottom CTA: "Want to customize these for Concord?"
+Copy the 3 uploaded `.mov` files to `public/videos/`:
 
-### 4. `src/pages/Dashboard.tsx` — Preview state
+- `Shot_of_Day.mov`
+- `That_Shot.mov`
+- `Courtana_display_demo.mov`
 
-- Header: "Concord Pickleball — Pilot Dashboard"
-- Badge: "Preview Mode" instead of "Week 1 of 8"
-- Date range: "Dates TBD — pending kickoff"
-- KPI sub text: "Awaiting pilot launch"
-- `pilotEvents` → genericized (Week 1-7 dates, $0 revenue, "Planned" status)
-- Add glass banner before KPIs explaining the dashboard goes live at install
+### 4. Landing Page Case Studies Section (`src/pages/Landing.tsx`)
 
-### 5. `src/data/partners.ts` — Add 2 entries
+**Move the current single-card "Case Study: Peak Pickleball" section to the bottom** (after "Part of Something Bigger", before CTA).
 
-- Concord Pickleball (Coming Soon, Community category)
-- Peak Pickleball (Live, Community category, links to https://courtana-venue-connect.lovable.app)
+**Expand into a multi-card "Case Studies" section** with a 3-column grid:
 
-### 6. `src/components/Navbar.tsx` — Reorder links
+**Card 1 — Peak Pickleball** (keep existing content):
 
-- Primary: The Plan, Events, Ecosystem (/partners), Dashboard
-- More dropdown: Schedule, About, Discovery
+- Badge: "Flagship Partner"
+- Title: "Peak Pickleball — 35 courts, 250 members"
+- Body: existing paragraph
+- Button: "See Peak's Portal →" → `https://peakpickleball.club/`
 
-### 7. `src/components/Footer.tsx` — Three-column layout
+**Card 2 — Underground Pickleball:**
 
-- Col 1: Courtana wordmark + tagline
-- Col 2: Quick links (The Plan, Events, Ecosystem, Dashboard)
-- Col 3: Contact (bill@courtana.com, courtana.com)
-- Bottom: "© 2026 Courtana · Built with intention"
+- Badge: "Community Partner"
+- Title: "Underground Pickleball"
+- Body: "Underground brings the energy. Featured highlights powered by Courtana smart courts — watch real plays from the community."
+- Two embedded video elements using `<video>` tags pointing to `/videos/Shot_of_Day.mov` and `/videos/That_Shot.mov` (stacked or side-by-side with poster frames)
+- Button: "View Highlights →" → `https://courtana.com/highlight-group/TuuqWPwc26EO`
+- Secondary link: display demo video `/videos/Courtana_display_demo.mov`
+
+**Card 3 — Seven Oaks** (placeholder):
+
+- Badge: "Coming Soon"
+- Title: "Seven Oaks"
+- Body: "Details coming soon — another venue joining the Courtana network."
+- No button (or muted "Coming Soon" state)
+
+Section title: "Case Studies" with subtitle "Real venues. Real results. See what Courtana looks like in action."
+
+### 5. Route / Page Structure
+
+No new routes needed. The case studies live inline on the landing page and the new partners appear on the existing `/partners` ecosystem page.
+
+## Files Modified
+
+- `src/data/partners.ts` — add 6 new partners, update Peak URL and Casey URL, expand PartnerCategory type
+- `src/components/partners/PartnerCard.tsx` — add 3 new category color mappings
+- `src/pages/Landing.tsx` — restructure case study section into 3-card grid at bottom, embed videos
+- `public/videos/` — 3 new .mov files
 
 ## Technical Notes
-- Import `EcosystemFlywheel` in Landing.tsx from `@/components/partners/EcosystemFlywheel`
-- Remove `CalendarDays` import from Landing.tsx (calendar CTA removed)
-- Schedule page courts array: keep as 6 courts (could update to 8 to match Concord but prompt doesn't specify)
-- All existing animations, glass styling, and responsive breakpoints stay unchanged
 
+- Video files served from `public/videos/` as static assets
+- `<video>` tags with `controls`, `preload="metadata"`, and `playsInline` for mobile
+- Existing partner card component handles the new categories automatically via the color map
+- Seven Oaks is a placeholder — will be fleshed out when assets arrive
