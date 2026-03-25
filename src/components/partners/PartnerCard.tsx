@@ -13,6 +13,7 @@ const categoryColors: Record<PartnerCategory, string> = {
   "Venue": "bg-blue-500/20 text-blue-400",
   "Influencer": "bg-orange-500/20 text-orange-400",
   "Health & Wellness": "bg-rose-500/20 text-rose-400",
+  "Marketing": "bg-emerald-500/20 text-emerald-400",
 };
 
 const statusColors: Record<string, string> = {
