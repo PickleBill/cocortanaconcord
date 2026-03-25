@@ -63,6 +63,7 @@ export const events: EventData[] = [
     whoItsFor: "Your coaching staff only — invite required.",
     format: "Guided demo + free play on smart courts with AI analysis running.",
     badge: "Invite Only",
+    revenueNote: "Coaches become evangelists — each coach drives $500+/mo in AI analysis revenue",
   },
   {
     id: "open-play-night",
