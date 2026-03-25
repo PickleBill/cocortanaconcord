@@ -3,6 +3,8 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { Activity, DollarSign, Users, Camera, ExternalLink, Target, Info } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CameraLayout from "@/components/dashboard/CameraLayout";
+import PilotTimeline from "@/components/dashboard/PilotTimeline";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
