@@ -122,8 +122,16 @@ const Events = () => {
                       <span className="flex items-center gap-1"><Users size={14} /> {event.spots} spots</span>
                       <span className="flex items-center gap-1"><DollarSign size={14} /> {event.price === 0 ? "Free" : `$${event.price}`}</span>
                     </div>
-                    <Button variant="outline" className="w-full border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
-                      Customize This Event
+                    {event.revenueNote && (
+                      <div className="flex items-start gap-2 p-3 rounded-xl bg-primary/5 border border-primary/10 mb-4">
+                        <TrendingUp size={14} className="text-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-xs text-primary font-medium">{event.revenueNote}</span>
+                      </div>
+                    )}
+                    <Button variant="outline" className="w-full border-primary/30 text-primary hover:bg-primary/10 rounded-xl" asChild>
+                      <a href={`mailto:bill@courtana.com?subject=Event: ${event.title}`}>
+                        Customize This Event
+                      </a>
                     </Button>
                   </div>
                 </div>
