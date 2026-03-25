@@ -382,9 +382,9 @@ const Landing = () => {
               <div className="mt-4 text-center">
                 <div className="flex items-center justify-center gap-2 mb-1">
                   <Zap className="text-primary" size={16} />
-                  <span className="text-sm font-bold text-foreground">Roast Coach — AI Coaching Review</span>
+                  <span className="text-sm font-bold text-foreground">Peak AI Analysis — Live Match Review</span>
                 </div>
-                <p className="text-xs text-muted-foreground">Fun, honest AI analysis of your coaching style. Click to expand.</p>
+                <p className="text-xs text-muted-foreground">Advanced match analysis with shot-by-shot breakdown. Click to expand.</p>
               </div>
             </motion.div>
           </div>
