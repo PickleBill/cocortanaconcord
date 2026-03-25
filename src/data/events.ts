@@ -40,6 +40,7 @@ export const events: EventData[] = [
     format: "Open format with exhibition matches, demos, and open play rotations.",
     badge: "🚀 Launch Event",
     featured: true,
+    revenueNote: "Free entry builds member base — 200 player sign-ups = long-term retention revenue",
   },
   {
     id: "coaches-preview",
