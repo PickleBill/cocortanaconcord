@@ -129,6 +129,7 @@ export const events: EventData[] = [
     whatsIncluded: ["Tournament play", "Smart court recording", "Auto-generated highlights", "Live leaderboard", "Medals for winners"],
     whoItsFor: "All skill levels — multiple divisions from 3.0 to 5.0+.",
     format: "Double elimination brackets by skill division. Games to 11, win by 2.",
+    revenueNote: "$40/player × 64 spots = $2,560 — plus spectator F&B and guest fees",
   },
   {
     id: "friday-night-showcase",
