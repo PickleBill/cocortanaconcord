@@ -139,6 +139,7 @@ const Landing = () => {
   const [expandedWeek, setExpandedWeek] = useState<number | null>(null);
   const [displayModalOpen, setDisplayModalOpen] = useState(false);
   const [aiModalOpen, setAiModalOpen] = useState(false);
+  const [roastModalOpen, setRoastModalOpen] = useState(false);
   const [revenueOpen, setRevenueOpen] = useState(false);
 
   return (
@@ -218,6 +219,25 @@ const Landing = () => {
         </div>
       </section>
 
+      {/* Elevated Pull Quote */}
+      <section className="py-16 px-4 bg-card/30">
+        <div className="container mx-auto max-w-3xl">
+          <motion.div
+            className="text-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            <div className="text-5xl mb-6 text-primary/30">"</div>
+            <p className="text-xl md:text-2xl font-bold text-foreground leading-relaxed italic mb-6">
+              Members keep asking me for footage and I've got one GoPro cable-tied to the wall. I don't want to go find clips and send them to people.
+            </p>
+            <p className="text-base text-muted-foreground font-semibold">— Chris Williams, Concord Pickleball</p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Value Props */}
       <section className="py-24 px-4 bg-card/50">
         <div className="container mx-auto max-w-6xl">
@@ -251,7 +271,7 @@ const Landing = () => {
             Real footage from real courts. This is what Courtana looks like on game day.
           </motion.p>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {/* Display Demo — TV Frame */}
             <motion.div
               className="cursor-pointer group"
@@ -327,6 +347,43 @@ const Landing = () => {
                 <p className="text-xs text-muted-foreground">Paddle identification, shot tracking, and real-time analysis. Click to expand.</p>
               </div>
             </motion.div>
+            {/* Roast Coach — AI Coaching Review */}
+            <motion.div
+              className="cursor-pointer group"
+              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
+              onClick={() => setRoastModalOpen(true)}
+            >
+              <div className="relative rounded-2xl overflow-hidden bg-black border-4 border-foreground/10 shadow-2xl">
+                <div className="absolute top-0 left-0 right-0 h-6 bg-foreground/5 flex items-center justify-center z-10">
+                  <div className="flex gap-1.5">
+                    <div className="w-2 h-2 rounded-full bg-red-500/50" />
+                    <div className="w-2 h-2 rounded-full bg-amber-500/50" />
+                    <div className="w-2 h-2 rounded-full bg-primary/50" />
+                  </div>
+                </div>
+                <video
+                  src="/videos/AI_Analysis_Roast_Coach.mp4"
+                  className="w-full aspect-video object-cover"
+                  muted
+                  playsInline
+                  preload="metadata"
+                  loop
+                  autoPlay
+                />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
+                  <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center">
+                    <Play className="text-primary-foreground ml-1" size={28} />
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 text-center">
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <Zap className="text-primary" size={16} />
+                  <span className="text-sm font-bold text-foreground">Roast Coach — AI Coaching Review</span>
+                </div>
+                <p className="text-xs text-muted-foreground">Fun, honest AI analysis of your coaching style. Click to expand.</p>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -359,14 +416,31 @@ const Landing = () => {
         </DialogContent>
       </Dialog>
 
+      {/* Roast Coach Modal */}
+      <Dialog open={roastModalOpen} onOpenChange={setRoastModalOpen}>
+        <DialogContent className="max-w-5xl p-0 bg-black border-foreground/10 overflow-hidden">
+          <DialogTitle className="sr-only">Roast Coach — AI Coaching Review</DialogTitle>
+          <video
+            src="/videos/AI_Analysis_Roast_Coach.mp4"
+            className="w-full aspect-video"
+            controls
+            autoPlay
+            playsInline
+          />
+        </DialogContent>
+      </Dialog>
+
       {/* 8-Week Timeline */}
       <section id="plan" className="py-24 px-4 bg-card/50">
         <div className="container mx-auto max-w-4xl">
           <motion.h2 className="text-foreground text-center mb-4 font-extrabold" style={{ fontSize: "clamp(2rem, 5vw, 3rem)", lineHeight: 1.15 }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
             The 8-Week Playbook
           </motion.h2>
-          <motion.p className="text-lg text-muted-foreground text-center mb-14 max-w-xl mx-auto" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+          <motion.p className="text-lg text-muted-foreground text-center mb-4 max-w-xl mx-auto" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
             Each week builds on the last. By week 8, you'll have hard data on ROI.
+          </motion.p>
+          <motion.p className="text-sm text-muted-foreground/60 text-center mb-14 italic" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+            Dates confirmed after kickoff call
           </motion.p>
           <motion.div className="space-y-4 relative" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={stagger}>
             <div className="absolute left-7 top-0 bottom-0 w-px bg-border hidden md:block" />

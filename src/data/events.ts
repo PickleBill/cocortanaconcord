@@ -15,6 +15,7 @@ export interface EventData {
   format: string;
   badge?: string;
   featured?: boolean;
+  revenueNote?: string;
 }
 
 export const events: EventData[] = [
@@ -39,6 +40,7 @@ export const events: EventData[] = [
     format: "Open format with exhibition matches, demos, and open play rotations.",
     badge: "🚀 Launch Event",
     featured: true,
+    revenueNote: "Free entry builds member base — 200 player sign-ups = long-term retention revenue",
   },
   {
     id: "coaches-preview",
@@ -61,6 +63,7 @@ export const events: EventData[] = [
     whoItsFor: "Your coaching staff only — invite required.",
     format: "Guided demo + free play on smart courts with AI analysis running.",
     badge: "Invite Only",
+    revenueNote: "Coaches become evangelists — each coach drives $500+/mo in AI analysis revenue",
   },
   {
     id: "open-play-night",
@@ -82,6 +85,7 @@ export const events: EventData[] = [
     whatsIncluded: ["3 hours of open play", "Smart court features", "Skill-based matching", "Weekly leaderboard entry"],
     whoItsFor: "All levels. Members free, guests $10.",
     format: "Open rotation. Courtana handles court assignments and skill matching.",
+    revenueNote: "$10/guest × 40 spots = $400/night recurring revenue",
   },
   {
     id: "ai-coaching-clinic",
@@ -103,6 +107,7 @@ export const events: EventData[] = [
     whatsIncluded: ["90-minute coached clinic", "AI shot analysis", "Personalized report within 24hrs", "Drill progression plan"],
     whoItsFor: "Intermediate players (3.0–4.0) looking to master the third shot drop.",
     format: "4 courts, 4 players per court. Rotating drills with AI tracking every shot.",
+    revenueNote: "$25/player × 16 spots = $400/clinic — 70% coach, 20% venue, 10% Courtana",
   },
   {
     id: "community-tournament",
@@ -124,6 +129,7 @@ export const events: EventData[] = [
     whatsIncluded: ["Tournament play", "Smart court recording", "Auto-generated highlights", "Live leaderboard", "Medals for winners"],
     whoItsFor: "All skill levels — multiple divisions from 3.0 to 5.0+.",
     format: "Double elimination brackets by skill division. Games to 11, win by 2.",
+    revenueNote: "$40/player × 64 spots = $2,560 — plus spectator F&B and guest fees",
   },
   {
     id: "friday-night-showcase",
@@ -145,6 +151,7 @@ export const events: EventData[] = [
     whatsIncluded: ["Live broadcast", "Smart court recording", "Instant replay", "Leaderboard competition", "Spectator-friendly atmosphere"],
     whoItsFor: "Players ($5 to compete) and spectators (free). All levels welcome.",
     format: "Showcase matches on courts with live broadcast.",
+    revenueNote: "$5/player × 32 spots = $160/night + walk-in spectator traffic",
   },
   {
     id: "charity-round-robin",
@@ -166,6 +173,7 @@ export const events: EventData[] = [
     whatsIncluded: ["4 hours of play", "Partner rotation format", "Medals for top 3", "Smart court stat awards", "Refreshments"],
     whoItsFor: "All skill levels. Balanced teams keep matches competitive and fun.",
     format: "Round robin with rotating partners. 6 rounds, 15-minute matches. Points-based standings.",
+    revenueNote: "$20/player × 24 spots = $480 donated — builds community goodwill + press",
   },
 ];
 

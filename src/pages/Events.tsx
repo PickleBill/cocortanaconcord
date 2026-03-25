@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Calendar, Clock, Users, DollarSign, Search } from "lucide-react";
+import { Calendar, Clock, Users, DollarSign, Search, TrendingUp } from "lucide-react";
 import { format, parseISO } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -58,8 +58,10 @@ const Events = () => {
                     <span className="flex items-center gap-1.5"><Users size={16} /> {featured.spots} spots</span>
                     <span className="flex items-center gap-1.5"><DollarSign size={16} /> {featured.price === 0 ? "Free" : `$${featured.price}`}</span>
                   </div>
-                  <Button variant="outline" className="border-primary/30 text-primary hover:bg-primary/10 rounded-xl px-8 py-5 text-base font-bold">
-                    Customize This Event
+                  <Button variant="outline" className="border-primary/30 text-primary hover:bg-primary/10 rounded-xl px-8 py-5 text-base font-bold" asChild>
+                    <a href={`mailto:bill@courtana.com?subject=Event: ${featured.title}`}>
+                      Customize This Event
+                    </a>
                   </Button>
                 </div>
               </div>
@@ -122,8 +124,16 @@ const Events = () => {
                       <span className="flex items-center gap-1"><Users size={14} /> {event.spots} spots</span>
                       <span className="flex items-center gap-1"><DollarSign size={14} /> {event.price === 0 ? "Free" : `$${event.price}`}</span>
                     </div>
-                    <Button variant="outline" className="w-full border-primary/30 text-primary hover:bg-primary/10 rounded-xl">
-                      Customize This Event
+                    {event.revenueNote && (
+                      <div className="flex items-start gap-2 p-3 rounded-xl bg-primary/5 border border-primary/10 mb-4">
+                        <TrendingUp size={14} className="text-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-xs text-primary font-medium">{event.revenueNote}</span>
+                      </div>
+                    )}
+                    <Button variant="outline" className="w-full border-primary/30 text-primary hover:bg-primary/10 rounded-xl" asChild>
+                      <a href={`mailto:bill@courtana.com?subject=Event: ${event.title}`}>
+                        Customize This Event
+                      </a>
                     </Button>
                   </div>
                 </div>
