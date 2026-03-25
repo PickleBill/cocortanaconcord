@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Camera, Play, Brain, Trophy, Send, Loader2, CheckCircle, Mail, ExternalLink } from "lucide-react";
+import { Camera, Play, Brain, Trophy, Send, Loader2, CheckCircle, Mail, ExternalLink, Monitor } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -86,11 +86,20 @@ const About = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3 }}
-              className="glass rounded-2xl h-80 flex items-center justify-center"
+              className="rounded-2xl overflow-hidden bg-black border-2 border-foreground/10 shadow-xl"
             >
-              <div className="text-center text-muted-foreground">
-                <Camera size={48} className="mx-auto mb-4 text-primary/50" />
-                <p className="text-sm">Facility photo coming soon</p>
+              <video
+                src="/videos/Courtana_display_demo_FINAL.mp4"
+                className="w-full aspect-video object-cover"
+                muted
+                playsInline
+                preload="metadata"
+                loop
+                autoPlay
+              />
+              <div className="bg-card/80 px-4 py-3 flex items-center gap-2">
+                <Monitor className="text-primary" size={14} />
+                <span className="text-xs text-muted-foreground font-medium">Courtana Smart Court — Live Display</span>
               </div>
             </motion.div>
           </div>
