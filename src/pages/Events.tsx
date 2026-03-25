@@ -58,8 +58,10 @@ const Events = () => {
                     <span className="flex items-center gap-1.5"><Users size={16} /> {featured.spots} spots</span>
                     <span className="flex items-center gap-1.5"><DollarSign size={16} /> {featured.price === 0 ? "Free" : `$${featured.price}`}</span>
                   </div>
-                  <Button variant="outline" className="border-primary/30 text-primary hover:bg-primary/10 rounded-xl px-8 py-5 text-base font-bold">
-                    Customize This Event
+                  <Button variant="outline" className="border-primary/30 text-primary hover:bg-primary/10 rounded-xl px-8 py-5 text-base font-bold" asChild>
+                    <a href={`mailto:bill@courtana.com?subject=Event: ${featured.title}`}>
+                      Customize This Event
+                    </a>
                   </Button>
                 </div>
               </div>

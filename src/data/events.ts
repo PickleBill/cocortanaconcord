@@ -173,6 +173,7 @@ export const events: EventData[] = [
     whatsIncluded: ["4 hours of play", "Partner rotation format", "Medals for top 3", "Smart court stat awards", "Refreshments"],
     whoItsFor: "All skill levels. Balanced teams keep matches competitive and fun.",
     format: "Round robin with rotating partners. 6 rounds, 15-minute matches. Points-based standings.",
+    revenueNote: "$20/player × 24 spots = $480 donated — builds community goodwill + press",
   },
 ];
 

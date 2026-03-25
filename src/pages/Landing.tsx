@@ -436,8 +436,11 @@ const Landing = () => {
           <motion.h2 className="text-foreground text-center mb-4 font-extrabold" style={{ fontSize: "clamp(2rem, 5vw, 3rem)", lineHeight: 1.15 }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
             The 8-Week Playbook
           </motion.h2>
-          <motion.p className="text-lg text-muted-foreground text-center mb-14 max-w-xl mx-auto" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+          <motion.p className="text-lg text-muted-foreground text-center mb-4 max-w-xl mx-auto" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
             Each week builds on the last. By week 8, you'll have hard data on ROI.
+          </motion.p>
+          <motion.p className="text-sm text-muted-foreground/60 text-center mb-14 italic" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+            Dates confirmed after kickoff call
           </motion.p>
           <motion.div className="space-y-4 relative" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={stagger}>
             <div className="absolute left-7 top-0 bottom-0 w-px bg-border hidden md:block" />
