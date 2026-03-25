@@ -270,7 +270,7 @@ const Landing = () => {
             Real footage from real courts. This is what Courtana looks like on game day.
           </motion.p>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {/* Display Demo — TV Frame */}
             <motion.div
               className="cursor-pointer group"
