@@ -1,7 +1,9 @@
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Rocket, Link2, TrendingUp, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import EcosystemFlywheel from "@/components/partners/EcosystemFlywheel";
@@ -36,6 +38,19 @@ const howItWorks = [
 ];
 
 const Partners = () => {
+  const [view, setView] = useState("all");
+
+  const filteredPartners = useMemo(() => {
+    if (view === "venue") return partners.filter((p) => p.category === "Venue");
+    if (view === "ecosystem") return partners.filter((p) => p.category !== "Venue");
+    return partners;
+  }, [view]);
+
+  const filteredSlots = useMemo(() => {
+    if (view === "venue") return [];
+    return openSlots;
+  }, [view]);
+
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -82,15 +97,25 @@ const Partners = () => {
           >
             Our Partners
           </motion.h2>
-          <motion.p className="text-lg text-muted-foreground text-center mb-14 max-w-xl mx-auto" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+          <motion.p className="text-lg text-muted-foreground text-center mb-8 max-w-xl mx-auto" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
             Live sites, connected platforms, and a growing network of pickleball innovators.
           </motion.p>
 
-          <motion.div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-            {partners.map((p) => (
+          <div className="flex justify-center mb-10">
+            <Tabs value={view} onValueChange={setView} className="w-auto">
+              <TabsList className="bg-secondary/80 border border-border">
+                <TabsTrigger value="all" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground px-6">All</TabsTrigger>
+                <TabsTrigger value="venue" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground px-6">Venue Partners</TabsTrigger>
+                <TabsTrigger value="ecosystem" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground px-6">Ecosystem</TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
+
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+            {filteredPartners.map((p) => (
               <PartnerCard key={p.name} partner={p} />
             ))}
-            {openSlots.map((s) => (
+            {filteredSlots.map((s) => (
               <OpenSlotCard key={s.name} name={s.name} category={s.category} />
             ))}
           </motion.div>
