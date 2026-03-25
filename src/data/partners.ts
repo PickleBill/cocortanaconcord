@@ -1,6 +1,6 @@
-import { Monitor, GraduationCap, Swords, ShoppingBag, Users, FlaskConical, Rocket, MapPin, Star, Heart, type LucideIcon } from "lucide-react";
+import { Monitor, GraduationCap, Swords, ShoppingBag, Users, FlaskConical, Rocket, MapPin, Star, Heart, Megaphone, type LucideIcon } from "lucide-react";
 
-export type PartnerCategory = "Core Platform" | "Coaching" | "Community" | "Equipment" | "Technology" | "Agency" | "Venue" | "Influencer" | "Health & Wellness";
+export type PartnerCategory = "Core Platform" | "Coaching" | "Community" | "Equipment" | "Technology" | "Agency" | "Venue" | "Influencer" | "Health & Wellness" | "Marketing";
 export type PartnerStatus = "Live" | "In Development" | "Coming Soon" | "Open Slot";
 
 export interface Partner {
