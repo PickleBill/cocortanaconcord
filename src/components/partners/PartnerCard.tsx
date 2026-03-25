@@ -28,16 +28,29 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
-export const PartnerCard = ({ partner }: { partner: Partner }) => (
-  <motion.div variants={fadeInUp} className="glass rounded-2xl p-8 glow-green-hover transition-all duration-300 hover:-translate-y-1 flex flex-col">
-    <div className="flex items-start justify-between mb-5">
-      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-        <partner.icon className="text-primary" size={24} />
-      </div>
-      <span className={`text-xs px-3 py-1 rounded-full font-semibold ${statusColors[partner.status]}`}>
+export const PartnerCard = ({ partner }: { partner: Partner }) => {
+  const domain = partner.url ? new URL(partner.url).hostname : null;
+
+  return (
+  <motion.div variants={fadeInUp} className="glass rounded-2xl overflow-hidden glow-green-hover transition-all duration-300 hover:-translate-y-1 flex flex-col">
+    {/* Visual Header */}
+    <div className="h-28 bg-gradient-to-br from-secondary to-card flex items-center justify-center relative">
+      {domain ? (
+        <img
+          src={`https://www.google.com/s2/favicons?domain=${domain}&sz=64`}
+          alt={partner.name}
+          className="w-16 h-16 rounded-xl bg-background/50 p-2"
+        />
+      ) : (
+        <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center">
+          <partner.icon className="text-primary" size={32} />
+        </div>
+      )}
+      <span className={`absolute top-3 right-3 text-xs px-3 py-1 rounded-full font-semibold ${statusColors[partner.status]}`}>
         {partner.status}
       </span>
     </div>
+    <div className="p-8 flex flex-col flex-1">
     <h3 className="text-xl font-bold text-foreground mb-1">{partner.name}</h3>
     <div className="flex flex-wrap gap-1.5 mb-4">
       <span className={`inline-block text-xs px-3 py-1 rounded-full font-semibold ${categoryColors[partner.category]}`}>
