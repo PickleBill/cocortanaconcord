@@ -1,7 +1,9 @@
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Rocket, Link2, TrendingUp, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import EcosystemFlywheel from "@/components/partners/EcosystemFlywheel";
