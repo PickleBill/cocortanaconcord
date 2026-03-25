@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import {
   Camera, Megaphone, Brain, Gamepad2, Users, Radio,
   ArrowRight, Mail, BarChart3, ExternalLink, Zap, MessageSquareQuote,
-  ChevronDown, CheckCircle
+  ChevronDown, CheckCircle, Play, Monitor, MapPin
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import EcosystemFlywheel from "@/components/partners/EcosystemFlywheel";
@@ -135,6 +136,9 @@ const revenueStreams = [
 
 const Landing = () => {
   const [expandedWeek, setExpandedWeek] = useState<number | null>(null);
+  const [displayModalOpen, setDisplayModalOpen] = useState(false);
+  const [aiModalOpen, setAiModalOpen] = useState(false);
+  const [revenueOpen, setRevenueOpen] = useState(false);
 
   return (
     <div className="min-h-screen">
@@ -236,8 +240,126 @@ const Landing = () => {
         </div>
       </section>
 
+      {/* See It In Action */}
+      <section className="py-24 px-4">
+        <div className="container mx-auto max-w-5xl">
+          <motion.h2 className="text-foreground text-center mb-4 font-extrabold" style={{ fontSize: "clamp(2rem, 5vw, 3rem)", lineHeight: 1.15 }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+            See It In Action
+          </motion.h2>
+          <motion.p className="text-lg text-muted-foreground text-center mb-14 max-w-xl mx-auto" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+            Real footage from real courts. This is what Courtana looks like on game day.
+          </motion.p>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Display Demo — TV Frame */}
+            <motion.div
+              className="cursor-pointer group"
+              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
+              onClick={() => setDisplayModalOpen(true)}
+            >
+              <div className="relative rounded-2xl overflow-hidden bg-black border-4 border-foreground/10 shadow-2xl">
+                <div className="absolute top-0 left-0 right-0 h-6 bg-foreground/5 flex items-center justify-center z-10">
+                  <div className="flex gap-1.5">
+                    <div className="w-2 h-2 rounded-full bg-red-500/50" />
+                    <div className="w-2 h-2 rounded-full bg-amber-500/50" />
+                    <div className="w-2 h-2 rounded-full bg-primary/50" />
+                  </div>
+                </div>
+                <video
+                  src="/videos/Courtana_display_demo_FINAL.mp4"
+                  className="w-full aspect-video object-cover"
+                  muted
+                  playsInline
+                  preload="metadata"
+                  loop
+                  autoPlay
+                />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
+                  <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center">
+                    <Play className="text-primary-foreground ml-1" size={28} />
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 text-center">
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <Monitor className="text-primary" size={16} />
+                  <span className="text-sm font-bold text-foreground">Court Display — Live View</span>
+                </div>
+                <p className="text-xs text-muted-foreground">Stats, highlights, and leaderboards in real time. Click to expand.</p>
+              </div>
+            </motion.div>
+
+            {/* AI Analysis Showcase */}
+            <motion.div
+              className="cursor-pointer group"
+              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
+              onClick={() => setAiModalOpen(true)}
+            >
+              <div className="relative rounded-2xl overflow-hidden bg-black border-4 border-foreground/10 shadow-2xl">
+                <div className="absolute top-0 left-0 right-0 h-6 bg-foreground/5 flex items-center justify-center z-10">
+                  <div className="flex gap-1.5">
+                    <div className="w-2 h-2 rounded-full bg-red-500/50" />
+                    <div className="w-2 h-2 rounded-full bg-amber-500/50" />
+                    <div className="w-2 h-2 rounded-full bg-primary/50" />
+                  </div>
+                </div>
+                <video
+                  src="/videos/BEST_AI_Analysis.mp4"
+                  className="w-full aspect-video object-cover"
+                  muted
+                  playsInline
+                  preload="metadata"
+                  loop
+                  autoPlay
+                />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
+                  <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center">
+                    <Play className="text-primary-foreground ml-1" size={28} />
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 text-center">
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <Brain className="text-primary" size={16} />
+                  <span className="text-sm font-bold text-foreground">AI Analysis in Action</span>
+                </div>
+                <p className="text-xs text-muted-foreground">Paddle identification, shot tracking, and real-time analysis. Click to expand.</p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Display Demo Modal */}
+      <Dialog open={displayModalOpen} onOpenChange={setDisplayModalOpen}>
+        <DialogContent className="max-w-5xl p-0 bg-black border-foreground/10 overflow-hidden">
+          <DialogTitle className="sr-only">Court Display Demo</DialogTitle>
+          <video
+            src="/videos/Courtana_display_demo_FINAL.mp4"
+            className="w-full aspect-video"
+            controls
+            autoPlay
+            playsInline
+          />
+        </DialogContent>
+      </Dialog>
+
+      {/* AI Analysis Modal */}
+      <Dialog open={aiModalOpen} onOpenChange={setAiModalOpen}>
+        <DialogContent className="max-w-5xl p-0 bg-black border-foreground/10 overflow-hidden">
+          <DialogTitle className="sr-only">AI Analysis Demo</DialogTitle>
+          <video
+            src="/videos/BEST_AI_Analysis.mp4"
+            className="w-full aspect-video"
+            controls
+            autoPlay
+            playsInline
+          />
+        </DialogContent>
+      </Dialog>
+
       {/* 8-Week Timeline */}
-      <section id="plan" className="py-24 px-4">
+      <section id="plan" className="py-24 px-4 bg-card/50">
         <div className="container mx-auto max-w-4xl">
           <motion.h2 className="text-foreground text-center mb-4 font-extrabold" style={{ fontSize: "clamp(2rem, 5vw, 3rem)", lineHeight: 1.15 }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
             The 8-Week Playbook
@@ -315,77 +437,96 @@ const Landing = () => {
       </section>
 
       {/* Economics */}
-      <section className="py-24 px-4 bg-card/50">
+      <section className="py-20 px-4">
         <div className="container mx-auto max-w-5xl">
-          <motion.h2 className="text-foreground text-center mb-14 font-extrabold" style={{ fontSize: "clamp(2rem, 5vw, 3rem)", lineHeight: 1.15 }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+          <motion.h2 className="text-foreground text-center mb-12 font-extrabold" style={{ fontSize: "clamp(2rem, 5vw, 3rem)", lineHeight: 1.15 }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
             The Economics
           </motion.h2>
-          <motion.div className="grid md:grid-cols-3 gap-8 mb-14" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+          <motion.div className="grid md:grid-cols-3 gap-6 mb-10" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
             {[
-              { label: "Your Investment During Pilot", value: "$0", sub: "Cameras, software, event support — we install everything, we pay for everything. 8 weeks." },
-              { label: "After the Pilot", value: "$95/court/mo", sub: "4 courts = $380/month. 8 courts = $760/month. Your first coaching clinic covers it." },
-              { label: "Projected New Revenue", value: "$1,400+/mo", sub: "From premium court pricing, AI coaching, highlight sales, and event revenue.", gold: true },
+              { label: "Your Investment During Pilot", value: "$0", sub: "We install everything. We pay for everything. 8 weeks, zero cost." },
+              { label: "After the Pilot", value: "$95/court/mo", sub: "4 courts = $380/mo. 8 courts = $760/mo. One clinic covers it." },
+              { label: "Projected New Revenue", value: "$1,400+/mo", sub: "Premium courts, AI coaching, highlights, events.", gold: true },
             ].map((m) => (
-              <motion.div key={m.label} variants={fadeInUp} className={`glass rounded-2xl p-8 text-center ${m.gold ? "border-accent/30 glow-green" : ""}`}>
-                <div className="text-sm text-muted-foreground mb-3 font-medium">{m.label}</div>
-                <div className={`font-extrabold mb-3 ${m.gold ? "text-gradient-gold" : "text-foreground"}`} style={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}>{m.value}</div>
+              <motion.div key={m.label} variants={fadeInUp} className={`glass rounded-2xl p-6 text-center ${m.gold ? "border-accent/30 glow-green" : ""}`}>
+                <div className="text-xs text-muted-foreground mb-2 font-medium uppercase tracking-wide">{m.label}</div>
+                <div className={`font-extrabold mb-2 ${m.gold ? "text-gradient-gold" : "text-foreground"}`} style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)" }}>{m.value}</div>
                 <div className="text-sm text-muted-foreground leading-relaxed">{m.sub}</div>
               </motion.div>
             ))}
           </motion.div>
 
-          <motion.div className="glass rounded-2xl overflow-x-auto mb-4" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left p-5 text-muted-foreground font-semibold text-base">Revenue Stream</th>
-                  <th className="text-right p-5 text-muted-foreground font-semibold text-base">Conservative</th>
-                  <th className="text-right p-5 text-muted-foreground font-semibold text-base">Realistic</th>
-                  <th className="text-right p-5 text-muted-foreground font-semibold text-base">Upside</th>
-                </tr>
-              </thead>
-              <tbody>
-                {revenueStreams.map((r) => (
-                  <tr key={r.name} className="border-b border-border/50">
-                    <td className="p-5 text-foreground text-sm font-medium">{r.name}</td>
-                    <td className="p-5 text-right text-muted-foreground text-base">{r.conservative}</td>
-                    <td className="p-5 text-right text-foreground text-base">{r.realistic}</td>
-                    <td className="p-5 text-right text-primary font-bold text-base">{r.upside}</td>
-                  </tr>
-                ))}
-                <tr className="bg-primary/5">
-                  <td className="p-5 font-bold text-foreground text-lg">Total Monthly</td>
-                  <td className="p-5 text-right font-bold text-muted-foreground text-lg">$750–1,750</td>
-                  <td className="p-5 text-right font-bold text-foreground text-lg">$2,050–4,100</td>
-                  <td className="p-5 text-right font-bold text-primary text-lg">$4,100–7,300</td>
-                </tr>
-              </tbody>
-            </table>
+          {/* Collapsible Revenue Table */}
+          <motion.div className="glass rounded-2xl overflow-hidden mb-3" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+            <button
+              onClick={() => setRevenueOpen(!revenueOpen)}
+              className="w-full flex items-center justify-between p-5 text-left hover:bg-secondary/30 transition-colors"
+            >
+              <span className="font-bold text-foreground text-base">Revenue Breakdown by Stream</span>
+              <ChevronDown size={18} className={`text-muted-foreground transition-transform ${revenueOpen ? "rotate-180" : ""}`} />
+            </button>
+            <AnimatePresence>
+              {revenueOpen && (
+                <motion.div
+                  initial={{ height: 0 }}
+                  animate={{ height: "auto" }}
+                  exit={{ height: 0 }}
+                  className="overflow-hidden"
+                >
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-t border-border">
+                        <th className="text-left p-4 text-muted-foreground font-semibold text-sm">Revenue Stream</th>
+                        <th className="text-right p-4 text-muted-foreground font-semibold text-sm">Conservative</th>
+                        <th className="text-right p-4 text-muted-foreground font-semibold text-sm">Realistic</th>
+                        <th className="text-right p-4 text-muted-foreground font-semibold text-sm">Upside</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {revenueStreams.map((r) => (
+                        <tr key={r.name} className="border-t border-border/50">
+                          <td className="p-4 text-foreground text-sm">{r.name}</td>
+                          <td className="p-4 text-right text-muted-foreground text-sm">{r.conservative}</td>
+                          <td className="p-4 text-right text-foreground text-sm">{r.realistic}</td>
+                          <td className="p-4 text-right text-primary font-semibold text-sm">{r.upside}</td>
+                        </tr>
+                      ))}
+                      <tr className="bg-primary/5 border-t border-border">
+                        <td className="p-4 font-bold text-foreground">Total Monthly</td>
+                        <td className="p-4 text-right font-bold text-muted-foreground">$750–1,750</td>
+                        <td className="p-4 text-right font-bold text-foreground">$2,050–4,100</td>
+                        <td className="p-4 text-right font-bold text-primary">$4,100–7,300</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
-          <motion.p className="text-sm text-muted-foreground italic mb-10 text-center" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
-            Exact projections depend on your facility size, membership count, court pricing, and event programming. We build your model together during Week 1.
+          <motion.p className="text-xs text-muted-foreground italic mb-8 text-center" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+            Projections depend on facility size, membership, court pricing, and event programming.
           </motion.p>
 
           {/* Zero Risk Box */}
-          <motion.div className="glass rounded-2xl p-8 border-primary/20 glow-green" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
-            <h3 className="text-xl font-bold text-foreground mb-3 flex items-center gap-2">
-              <Zap className="text-primary" size={22} />
-              Zero Risk
+          <motion.div className="glass rounded-2xl p-6 border-primary/20 glow-green" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+            <h3 className="text-lg font-bold text-foreground mb-2 flex items-center gap-2">
+              <Zap className="text-primary" size={20} />
+              Zero Risk Pilot
             </h3>
-            <p className="text-base text-muted-foreground leading-relaxed">
-              Start with 4 courts. One camera each. Zero hardware cost. No subscription during the 8-week pilot. After that, 4 courts at $95/month = $380. Your first AI coaching clinic makes that back in a single session. If the numbers don't work, we pull everything. The only risk is dealing with one more GoPro request from a member.
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Start with 4 courts. One camera each. No hardware cost, no subscription during the pilot. After 8 weeks, 4 courts at $95/mo = $380. One coaching clinic covers it. If the numbers don't work, we pull everything.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* What a Partnership Looks Like */}
-      <section className="py-24 px-4">
+      <section className="py-20 px-4 bg-card/50">
         <div className="container mx-auto max-w-5xl">
-          <motion.h2 className="text-foreground text-center mb-14 font-extrabold" style={{ fontSize: "clamp(2rem, 5vw, 3rem)", lineHeight: 1.15 }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+          <motion.h2 className="text-foreground text-center mb-12 font-extrabold" style={{ fontSize: "clamp(2rem, 5vw, 3rem)", lineHeight: 1.15 }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
             What a Partnership Looks Like
           </motion.h2>
-          <motion.div className="grid md:grid-cols-2 gap-8 mb-8" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+          <motion.div className="grid md:grid-cols-2 gap-8 mb-6" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
             <motion.div variants={fadeInUp} className="glass rounded-2xl p-8 border-l-4 border-l-primary">
               <h3 className="text-lg font-bold text-foreground mb-5 flex items-center gap-2">
                 <CheckCircle className="text-primary" size={20} />
@@ -436,26 +577,8 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Case Study: Peak Pickleball */}
-      <section className="py-24 px-4 bg-card/50">
-        <div className="container mx-auto max-w-4xl">
-          <motion.div className="glass rounded-2xl p-8 md:p-10 border border-accent/30" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
-            <span className="text-sm font-bold px-4 py-1.5 rounded-full bg-accent/20 text-accent inline-block mb-5">🏆 Flagship Partner</span>
-            <h3 className="text-2xl md:text-3xl font-extrabold text-foreground mb-4">Peak Pickleball — 35 courts, 250 members</h3>
-            <p className="text-base text-muted-foreground leading-relaxed mb-6">
-              Peak launched their Courtana pilot in spring 2026. Within the first month: a 300-player tournament with live highlights on 4 courts, AI coaching clinics generating new revenue per session, and a grand opening event that became the talk of the local pickleball community.
-            </p>
-            <Button variant="outline" className="border-accent/30 text-accent hover:bg-accent/10 rounded-xl font-bold" asChild>
-              <a href="https://courtana-venue-connect.lovable.app" target="_blank" rel="noopener noreferrer">
-                See Peak's Portal →
-              </a>
-            </Button>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Part of Something Bigger */}
-      <section className="py-24 px-4">
+      <section className="py-20 px-4">
         <div className="container mx-auto max-w-5xl">
           <motion.div className="glass rounded-2xl p-8 md:p-12 bg-card/80" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
             <div className="grid md:grid-cols-2 gap-10 items-center">
@@ -474,6 +597,95 @@ const Landing = () => {
                 </Button>
               </div>
             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Case Studies */}
+      <section className="py-20 px-4 bg-card/50">
+        <div className="container mx-auto max-w-6xl">
+          <motion.h2 className="text-foreground text-center mb-4 font-extrabold" style={{ fontSize: "clamp(2rem, 5vw, 3rem)", lineHeight: 1.15 }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+            Case Studies
+          </motion.h2>
+          <motion.p className="text-lg text-muted-foreground text-center mb-14 max-w-xl mx-auto" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+            Real venues. Real results. See what Courtana looks like in action.
+          </motion.p>
+
+          <motion.div className="grid md:grid-cols-3 gap-8" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+            {/* Peak Pickleball */}
+            <motion.div variants={fadeInUp} className="glass rounded-2xl overflow-hidden flex flex-col">
+              <div className="relative aspect-video bg-black">
+                <video
+                  src="/videos/PEAK_AI_Analysis.mp4"
+                  className="w-full h-full object-cover"
+                  muted
+                  playsInline
+                  preload="metadata"
+                  loop
+                  autoPlay
+                />
+              </div>
+              <div className="p-6 flex flex-col flex-1">
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-accent/20 text-accent inline-block mb-3 w-fit">🏆 Flagship Partner</span>
+                <h3 className="text-lg font-extrabold text-foreground mb-2">Peak Pickleball</h3>
+                <p className="text-sm text-muted-foreground mb-1">35 courts · 250 members</p>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">
+                  Full smart court deployment with AI coaching clinics, tournament coverage, and a grand opening that became the talk of the community.
+                </p>
+                <Button variant="outline" className="border-accent/30 text-accent hover:bg-accent/10 rounded-xl font-bold w-full" asChild>
+                  <a href="https://peakpickleball.club/" target="_blank" rel="noopener noreferrer">
+                    Visit Peak Pickleball →
+                  </a>
+                </Button>
+              </div>
+            </motion.div>
+
+            {/* Underground Pickleball */}
+            <motion.div variants={fadeInUp} className="glass rounded-2xl overflow-hidden flex flex-col">
+              <div className="relative aspect-video bg-black">
+                <video
+                  src="/videos/AI_Analysis_Roast_Coach.mp4"
+                  className="w-full h-full object-cover"
+                  muted
+                  playsInline
+                  preload="metadata"
+                  loop
+                  autoPlay
+                />
+              </div>
+              <div className="p-6 flex flex-col flex-1">
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 inline-block mb-3 w-fit">🎯 Venue Partner</span>
+                <h3 className="text-lg font-extrabold text-foreground mb-2">Underground Pickleball</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">
+                  Underground brings the energy. Featured highlights powered by Courtana smart courts — watch real plays from the community.
+                </p>
+                <Button variant="outline" className="border-blue-500/30 text-blue-400 hover:bg-blue-500/10 rounded-xl font-bold w-full" asChild>
+                  <a href="https://courtana.com/highlight-group/TuuqWPwc26EO" target="_blank" rel="noopener noreferrer">
+                    View Highlights →
+                  </a>
+                </Button>
+              </div>
+            </motion.div>
+
+            {/* Urban Pickleball ATX */}
+            <motion.div variants={fadeInUp} className="glass rounded-2xl overflow-hidden flex flex-col border border-dashed border-border/50">
+              <div className="aspect-video bg-secondary/30 flex items-center justify-center">
+                <div className="text-center">
+                  <MapPin className="text-muted-foreground/40 mx-auto mb-2" size={36} />
+                  <p className="text-xs text-muted-foreground/60 font-medium">Austin, TX</p>
+                </div>
+              </div>
+              <div className="p-6 flex flex-col flex-1">
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-muted text-muted-foreground inline-block mb-3 w-fit">🚀 Coming Soon</span>
+                <h3 className="text-lg font-extrabold text-foreground mb-2">Urban Pickleball ATX</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">
+                  Next up in the Courtana network. Austin's premier indoor pickleball destination — joining the smart court revolution.
+                </p>
+                <Button variant="outline" className="border-border text-muted-foreground rounded-xl w-full" disabled>
+                  Coming Soon
+                </Button>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>

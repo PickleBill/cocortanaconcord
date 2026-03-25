@@ -10,6 +10,9 @@ const categoryColors: Record<PartnerCategory, string> = {
   "Equipment": "bg-red-500/20 text-red-400",
   "Technology": "bg-cyan-500/20 text-cyan-400",
   "Agency": "bg-pink-500/20 text-pink-400",
+  "Venue": "bg-blue-500/20 text-blue-400",
+  "Influencer": "bg-orange-500/20 text-orange-400",
+  "Health & Wellness": "bg-rose-500/20 text-rose-400",
 };
 
 const statusColors: Record<string, string> = {
@@ -35,16 +38,29 @@ export const PartnerCard = ({ partner }: { partner: Partner }) => (
       </span>
     </div>
     <h3 className="text-xl font-bold text-foreground mb-1">{partner.name}</h3>
-    <span className={`inline-block text-xs px-3 py-1 rounded-full font-semibold mb-4 w-fit ${categoryColors[partner.category]}`}>
-      {partner.category}
-    </span>
+    <div className="flex flex-wrap gap-1.5 mb-4">
+      <span className={`inline-block text-xs px-3 py-1 rounded-full font-semibold ${categoryColors[partner.category]}`}>
+        {partner.category}
+      </span>
+      {partner.categories?.map((cat) => (
+        <span key={cat} className={`inline-block text-xs px-2.5 py-0.5 rounded-full font-medium opacity-80 ${categoryColors[cat]}`}>
+          {cat}
+        </span>
+      ))}
+    </div>
     <p className="text-base text-muted-foreground leading-relaxed mb-4 flex-1">{partner.description}</p>
     <p className="text-sm text-muted-foreground/70 italic mb-6">🔗 {partner.connection}</p>
-    <Button variant="outline" className="border-primary/30 text-primary hover:bg-primary/10 w-full gap-2" asChild>
-      <a href={partner.url} target="_blank" rel="noopener noreferrer">
-        Visit Site <ExternalLink size={14} />
-      </a>
-    </Button>
+    {partner.url ? (
+      <Button variant="outline" className="border-primary/30 text-primary hover:bg-primary/10 w-full gap-2" asChild>
+        <a href={partner.url} target="_blank" rel="noopener noreferrer">
+          Visit Site <ExternalLink size={14} />
+        </a>
+      </Button>
+    ) : (
+      <Button variant="outline" className="border-border text-muted-foreground w-full" disabled>
+        Coming Soon
+      </Button>
+    )}
   </motion.div>
 );
 
