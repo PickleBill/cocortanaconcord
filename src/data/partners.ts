@@ -158,6 +158,16 @@ export const partners: Partner[] = [
     connection: "Builds partner sites, marketing assets, and MVPs. The agency flywheel powering ecosystem growth.",
     icon: Rocket,
   },
+  {
+    name: "G5quared (Gaby)",
+    category: "Marketing",
+    categories: ["Influencer"],
+    url: "https://www.instagram.com/g5quared",
+    status: "Live",
+    description: "Social media advertising and business generation expert — Facebook ads, content strategy, and growth marketing for venues and brands.",
+    connection: "Marketing partner driving paid acquisition, social ad campaigns, and venue business generation across the Courtana network.",
+    icon: Megaphone,
+  },
 ];
 
 export const openSlots: { name: string; category: PartnerCategory }[] = [
