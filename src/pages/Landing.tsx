@@ -294,6 +294,7 @@ const Landing = () => {
                   preload="metadata"
                   loop
                   autoPlay
+                  onLoadedData={(e) => (e.currentTarget as HTMLVideoElement).play()}
                 />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
                   <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center">
