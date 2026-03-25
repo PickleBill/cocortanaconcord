@@ -107,6 +107,12 @@ const Dashboard = () => {
             ))}
           </motion.div>
 
+          {/* Camera Layout + Pilot Timeline */}
+          <div className="grid lg:grid-cols-2 gap-6 mb-8">
+            <CameraLayout />
+            <PilotTimeline />
+          </div>
+
           {/* Charts */}
           <div className="grid lg:grid-cols-2 gap-6 mb-8">
             <motion.div className="glass rounded-2xl p-6" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
