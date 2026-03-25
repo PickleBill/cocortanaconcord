@@ -107,6 +107,7 @@ export const events: EventData[] = [
     whatsIncluded: ["90-minute coached clinic", "AI shot analysis", "Personalized report within 24hrs", "Drill progression plan"],
     whoItsFor: "Intermediate players (3.0–4.0) looking to master the third shot drop.",
     format: "4 courts, 4 players per court. Rotating drills with AI tracking every shot.",
+    revenueNote: "$25/player × 16 spots = $400/clinic — 70% coach, 20% venue, 10% Courtana",
   },
   {
     id: "community-tournament",
