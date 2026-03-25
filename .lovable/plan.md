@@ -1,109 +1,60 @@
 
 
-# Concord V2 — Production Cleanup + Template Fork Strategy
+# V2b + V2c — Landing Polish + Dashboard/Events Upgrade
 
-## Two-Project Strategy
+## Status Check
 
-You're right that this should branch into two projects:
+**V2a — DONE.** Index redirect, Concord branding, Discovery defaults, pilotWeek fields, favicon, 8 courts on Schedule — all shipped.
 
-1. **This project** — becomes the final **Concord Pickleball** portal for Chris Williams. We apply all the V2 cleanup below.
-2. **A new project** — a generic **Courtana Connect** template with placeholder venue data, no Concord-specific content, reusable for every future venue partner. This would be created as a Lovable remix of this project after V2 lands, then stripped of Concord-specific references.
+**Next up:** V2b (Landing polish) and V2c (Dashboard + Events) can run together in one prompt since they touch different files.
 
-The remix approach makes sense: finish Concord first (it's 90% there), then fork it into the generic template. That way the template inherits all the polished UI, video patterns, and ecosystem structure.
-
-**For now, this plan covers the Concord V2 cleanup only.** The template fork is a separate step after this ships.
+**Fork timing:** After V2b+V2c+V2d land, you remix this project in Lovable (Settings > Remix). No action needed from you until then.
 
 ---
 
-## V2a — Global Cleanup & Branding (this prompt)
+## What Gets Built Now (V2b + V2c combined)
 
-7 changes across 5 files. No layout or design changes — purely fixing references, dead code, and branding.
+### Landing Page Polish (`src/pages/Landing.tsx`)
 
-### 1. Replace Index.tsx placeholder
-`src/pages/Index.tsx` — replace the Lovable placeholder with a simple redirect to `/`.
+1. Add `preload="metadata"` to ALL `<video>` tags (some already have it, verify all do — the "See It In Action" section videos especially)
+2. Elevate the GoPro quote ("Members keep asking me for footage...") into a dedicated pull-quote callout with larger text, quotation marks, and "— Chris Williams, Concord Pickleball" attribution — placed between the quotes carousel and value props
+3. Add the Roast Coach video (`AI_Analysis_Roast_Coach.mp4`) as a third clickable card in the "See It In Action" section, titled "Roast Coach — AI Coaching Review"
+4. Timeline section: add a subtle note under the header — "Dates confirmed after kickoff call"
+5. Mobile spacing pass: ensure hero stats grid uses `grid-cols-2` on small screens with proper gap
 
-### 2. Fix EventDetail venue name
-`src/pages/EventDetail.tsx` line 72 — "Peak Pickleball" → "Concord Pickleball"
+### Dashboard Upgrade (`src/pages/Dashboard.tsx`)
 
-### 3. Update Discovery defaults
-`src/pages/Discovery.tsx` lines 17-21:
-- `venueName`: "Peak Pickleball" → "Concord Pickleball"
-- `courts`: 12 → 8
-- `members`: 450 → 200
-- `monthlyBookings`: 1200 → 600
-- `monthlyEvents`: 6 → 4
+1. **Camera layout diagram** — An 8-court grid (4x2) showing camera positions as green dots on each court. Simple CSS grid with court labels (Court 1-8) and a camera icon per court
+2. **Pilot timeline bar** — Horizontal 8-week timeline showing which events land in which week. Each week is a segment; events shown as colored dots/pills below their week. Uses the `pilotEvents` data already in the file
+3. Place both new sections between the KPI cards and the charts
 
-### 4. Update event dates to template format
-`src/data/events.ts` — replace all specific dates with pilot-relative labels:
-- Launch Event → "Week 2 of Pilot"
-- Coaches Preview → "Week 1 of Pilot"
-- Open Play Night → "Week 3 of Pilot"
-- AI Coaching Clinic → "Week 3 of Pilot"
-- Community Tournament → "Week 4 of Pilot"
-- Friday Night Showcase → "Week 5 of Pilot"
-- Charity Round Robin → "Week 6 of Pilot"
+### Events Upgrade (`src/pages/Events.tsx` + `src/data/events.ts`)
 
-Since `date` is used with `parseISO()` in EventDetail, we'll keep the ISO dates but add a `pilotWeek` display field and use that in the UI instead.
+1. **Launch Event confirmed as `featured: true`** — already correct in events.ts (verified)
+2. **"Why This Event Works" revenue blurb** — Add a `revenueNote` field to `EventData` interface and each event. Example: "Open Play Night — $10/guest × 40 spots = $400/night recurring". Display as a small green-tinted callout on each event card
+3. **Wire CTAs** — "Customize This Event" buttons become `mailto:bill@courtana.com?subject=Event: {title}` links instead of dead buttons
 
-### 5. SVG favicon
-`index.html` — replace the broken favicon with a clean SVG using Courtana green (#00E676).
+### About Page Cleanup (`src/pages/About.tsx`)
 
-### 6. Verify footer
-Footer already shows `bill@courtana.com` — confirmed clean, no changes needed.
-
-### 7. Schedule page
-Keep it — it's a functional calendar component that adds value for the Concord demo. The 6-court grid should be updated to 8 courts to match Concord.
+- Verify no placeholder images remain (last edit added the display demo video — confirm it's rendering)
 
 ---
 
-## V2b — Landing Page Polish (next prompt)
+## Files Modified
 
-6 changes to `src/pages/Landing.tsx`:
-- Video `preload="metadata"` on all `<video>` tags
-- Elevate the "GoPro on the wall" quote into a dedicated pull-quote callout
-- Add the Roast Coach video as a third AI analysis embed
-- Revenue table made collapsible via accordion
-- Mobile spacing pass on hero stats grid
-- Timeline dates → "Dates confirmed after kickoff call" note
-
-## V2c — Dashboard + Events (parallel with V2b)
-
-5 changes:
-- Camera layout diagram for 8 courts on Dashboard
-- Horizontal pilot timeline bar on Dashboard
-- "Why This Event Works" revenue blurb on each event card
-- Launch Event gets `featured: true`
-- Registration CTAs → mailto:bill@courtana.com
-
-## V2d — Production Hardening (last)
-
-4 changes:
-- Video CDN migration (manual — not a Lovable prompt)
-- Form submission wiring (Formspree or mailto fallback)
-- Simple password gate on Dashboard
-- Analytics snippet in index.html
+| File | Changes |
+|------|---------|
+| `src/pages/Landing.tsx` | Pull-quote callout, Roast Coach video card, timeline note, mobile grid fix, video preload audit |
+| `src/pages/Dashboard.tsx` | Camera layout diagram, pilot timeline bar |
+| `src/pages/Events.tsx` | Wire CTA buttons to mailto, render revenueNote |
+| `src/data/events.ts` | Add `revenueNote` field to interface + all 7 events |
 
 ---
 
-## Files Modified in V2a
+## What You Need To Do
 
-| File | Change |
-|------|--------|
-| `src/pages/Index.tsx` | Replace placeholder with redirect |
-| `src/pages/EventDetail.tsx` | "Peak Pickleball" → "Concord Pickleball" |
-| `src/pages/Discovery.tsx` | Update defaults to Concord profile |
-| `src/data/events.ts` | Add `pilotWeek` field, keep ISO dates for parsing |
-| `src/pages/Schedule.tsx` | Update courts array from 6 to 8 |
-| `index.html` | Fix favicon SVG |
-
----
-
-## Template Fork (after V2 ships)
-
-After Concord is production-ready:
-1. Remix this project in Lovable
-2. Strip all Concord-specific content (Chris quotes, "Concord Pickleball" references)
-3. Replace with generic placeholders: `{{venueName}}`, `{{courts}}`, etc.
-4. Keep all video embeds, ecosystem structure, and UI patterns
-5. This becomes the **Courtana Connect** starter kit for every new venue
+**Nothing right now.** This prompt handles V2b+V2c. After this lands:
+- **V2d** (password gate on Dashboard, form wiring, analytics) is one more prompt
+- **Video CDN migration** is manual (upload videos to Cloudflare R2 or S3, update URLs, purge from git) — I'll give you exact steps when we get there
+- **Fork/Remix** — after V2d, go to Settings > Remix to create the generic Courtana Connect template
 
