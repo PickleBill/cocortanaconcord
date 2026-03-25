@@ -1,98 +1,132 @@
-# Ecosystem Expansion + Case Studies Section
+# Video Assets + Case Studies + Partner Expansion + UX Cleanup
 
 ## Overview
 
-Add 5 new ecosystem partners, update existing links, save 3 video assets, and restructure the landing page case study section into a multi-venue showcase. Seven Oaks gets a placeholder card (assets coming later).  
+Save 4 new .mp4 video assets, restructure the landing page case studies into a polished multi-venue showcase with video thumbnails and a prominent AI analysis display demo, expand partner data with new categories and venues, and clean up the economics section UX.
 
-## Changes - > LOVE IT ALL.  To be clear, there's different types of ecosystem partners which you realize and venue is one of them and probably the most important one venues are the ecosystem partner that is going to be featured in the case study like Peak Pickleball, Underground, which is our primary one and the two in Austin, which are in the pipeline as in. We're gonna be there soon. Coming soon to Dieal. 7oak is in that category as well. And the other thing is I like the idea of the categories and in case it's not obvious like there are several that could be multi categorized so that's fine to do the color labels and make sure we have the ability to have multiple categories, but there should definitely still be a primary.  
+## Files to Modify/Create
 
-### 1. Partner Data (`src/data/partners.ts`)
+### 1. Save Video Assets to `public/videos/`
+
+Copy all 4 uploaded .mp4 files (smaller than the old .mov files — solves GitHub size issues):
+
+- `Courtana_display_demo_FINAL.mp4` — the hero display demo, gets prominent "TV frame" treatment
+- `BEST_AI_Analysis_-_meta_view_paddle_identifier_copy.mp4` — AI analysis showcase
+- `PEAK_AI_Analysis_bcsPaTmCM2dw.mp4` — Peak-specific AI analysis
+- `AI_Analysis_Roast_Coach_feb_11.mp4` — coaching AI analysis
+
+Also delete the old `.mov` files if they exist (they don't currently, but clean up any references).
+
+### 2. Landing Page — `src/pages/Landing.tsx`
+
+**Display Demo — Prominent TV Frame Modal**
+
+Add a new "See It In Action" section between Value Props and the Timeline (or at top of the plan section). Features:
+
+- A styled TV/monitor frame with rounded corners and a subtle bezel effect
+- Embeds `Courtana_display_demo_FINAL.mp4` with autoplay/muted/loop or controls
+- Click opens a fullscreen Dialog modal for immersive viewing
+- Brief caption: "Live court display at Underground Pickleball — stats, highlights, and leaderboards in real time."
+
+**AI Analysis Showcase**
+
+Add the meta view AI analysis video (`BEST_AI_Analysis_...mp4`) as a clickable card near the value props or in its own mini-section. Opens in a Dialog modal on click. Title: "AI Analysis in Action" — shows the paddle identification and shot tracking.
+
+**Case Studies Section — Restructured (stays at bottom, before CTA)**
+
+Replace the current single Peak card with a 3-column grid:
+
+**Card 1 — Peak Pickleball:**
+
+- Badge: "Flagship Partner"
+- Video thumbnail from `PEAK_AI_Analysis_bcsPaTmCM2dw.mp4` (first frame / poster, click to play)
+- Title: "Peak Pickleball — 35 courts, 250 members"
+- Brief body text
+- CTA: "Visit Peak Pickleball →" links to `https://peakpickleball.club/`
+
+**Card 2 — Underground Pickleball:**
+
+- Badge: "Venue Partner"
+- Video embed of `Shot_of_Day.mov` (or the existing asset — we'll use the display demo clip as facility footage since we have it)
+- Title: "Underground Pickleball"
+- Body: community highlights text
+- CTA: "View Highlights →" links to `https://courtana.com/highlight-group/TuuqWPwc26EO`
+
+**Card 3 — Urban Pickleball ATX:**
+
+- Badge: "Primetime Patrtner (Coming Soon)"
+- Muted styling, no video yet
+- Title: "Urban Pickleball — Austin, TX"
+- Body: "Next up in the Courtana network. Austin's premier indoor pickleball destination."
+- No active CTA (or muted "Coming Soon" button)
+
+Section title: "Case Studies" / subtitle: "Real venues. Real results. See what Courtana looks like in action."
+
+CTA buttons on Peak and Underground link to the respective external sites (not back to /partners).
+
+**Economics Section — UX Cleanup**
+
+- Tighten the revenue table: reduce padding, make it more compact
+- The first KPI card was already reframed to "We Install Everything" / "Turn-Key" in the last edit — verify this is clean
+- Ensure the Zero Risk box copy doesn't over-emphasize cost language
+- Consider making the revenue table collapsible (accordion) so it doesn't dominate the page
+
+### 3. Partner Data — `src/data/partners.ts`
+
+**Add new categories** to `PartnerCategory` type: `"Venue"` | `"Influencer"` | `"Health & Wellness"`
 
 **Update existing entries:**
 
-- Peak Pickleball URL: `https://courtana-venue-connect.lovable.app` → `https://peakpickleball.club/`
-- Kings Court Coach (Casey) URL: duplicate coach-play URL → `https://racketscience.lovable.app`. Update description to "Elite Coaching Partners — powered by Courtana analytics and sport science methodology."
-
-**Add new category values** to the `PartnerCategory` type:
-
-- `"Influencer"` | `"Health & Wellness"` | `"Venue"`
+- Peak Pickleball: URL → `https://peakpickleball.club/`, category → `"Venue"` (primary)
+- Kings Court Coach (Casey): URL → `https://racketscience.lovable.app`, description → "Elite Coaching Partners — powered by Courtana analytics and sport science methodology."
 
 **Add new partner entries:**
 
 
 | Name                    | Category          | Status      | URL                                                                                                                                                  |
 | ----------------------- | ----------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Underground Pickleball  | Venue             | Live        | [https://courtana.com/highlight-group/TuuqWPwc26EO](https://courtana.com/highlight-group/TuuqWPwc26EO)                                               |
+| Urban Pickleball ATX    | Venue             | Coming Soon | [https://www.pickleheads.com/courts/us/texas/austin/urban-pickleball-club](https://www.pickleheads.com/courts/us/texas/austin/urban-pickleball-club) |
+| Seven Oaks              | Venue             | Coming Soon | (empty)                                                                                                                                              |
+| Capital City Pickleball | Community         | Live        | [https://www.capitalcitypickleball.com/](https://www.capitalcitypickleball.com/)                                                                     |
 | Bryant (Padel Bryant)   | Influencer        | Live        | [https://www.instagram.com/padelbryant/](https://www.instagram.com/padelbryant/)                                                                     |
 | StretchLab              | Health & Wellness | Live        | [https://www.stretchlab.com/](https://www.stretchlab.com/)                                                                                           |
-| Urban Pickleball ATX    | Venue             | Live        | [https://www.pickleheads.com/courts/us/texas/austin/urban-pickleball-club](https://www.pickleheads.com/courts/us/texas/austin/urban-pickleball-club) |
-| Capital City Pickleball | Community         | Live        | [https://www.capitalcitypickleball.com/](https://www.capitalcitypickleball.com/)                                                                     |
-| Underground Pickleball  | Venue             | Live        | [https://courtana.com/highlight-group/TuuqWPwc26EO](https://courtana.com/highlight-group/TuuqWPwc26EO)                                               |
-| Seven Oaks              | Venue             | Coming Soon | (empty — assets coming)                                                                                                                              |
 
 
-**New icons needed:** `Instagram` or `Star` for Influencer, `Heart` for Health & Wellness, `MapPin` for Venue.
+**Add `categories` array field** to `Partner` interface (optional, for multi-category support). Primary category remains the `category` field; `categories` is an array of additional tags displayed as secondary badges. Example: Underground could be `category: "Venue"`, `categories: ["Community"]`.
 
-### 2. PartnerCard Category Colors (`src/components/partners/PartnerCard.tsx`)
+**Icons**: `MapPin` for Venue, `Star` or `Instagram` for Influencer, `Heart` for Health & Wellness.
 
-Add color mappings for the 3 new categories:
+### 4. PartnerCard — `src/components/partners/PartnerCard.tsx`
 
-- `"Influencer"`: orange tones
-- `"Health & Wellness"`: rose/pink tones
-- `"Venue"`: blue tones
+- Add color mappings for new categories: Venue (blue), Influencer (orange), Health & Wellness (rose)
+- Render secondary `categories` badges below the primary badge if present
+- Handle empty URLs gracefully (hide "Visit Site" button for Coming Soon partners with no URL)
 
-### 3. Save Video Assets
+### 5. Concord entry update — `src/data/partners.ts`
 
-Copy the 3 uploaded `.mov` files to `public/videos/`:
+Change Concord's category from `"Community"` to `"Venue"` since it's a venue partner.
 
-- `Shot_of_Day.mov`
-- `That_Shot.mov`
-- `Courtana_display_demo.mov`
-
-### 4. Landing Page Case Studies Section (`src/pages/Landing.tsx`)
-
-**Move the current single-card "Case Study: Peak Pickleball" section to the bottom** (after "Part of Something Bigger", before CTA).
-
-**Expand into a multi-card "Case Studies" section** with a 3-column grid:
-
-**Card 1 — Peak Pickleball** (keep existing content):
-
-- Badge: "Flagship Partner"
-- Title: "Peak Pickleball — 35 courts, 250 members"
-- Body: existing paragraph
-- Button: "See Peak's Portal →" → `https://peakpickleball.club/`
-
-**Card 2 — Underground Pickleball:**
-
-- Badge: "Community Partner"
-- Title: "Underground Pickleball"
-- Body: "Underground brings the energy. Featured highlights powered by Courtana smart courts — watch real plays from the community."
-- Two embedded video elements using `<video>` tags pointing to `/videos/Shot_of_Day.mov` and `/videos/That_Shot.mov` (stacked or side-by-side with poster frames)
-- Button: "View Highlights →" → `https://courtana.com/highlight-group/TuuqWPwc26EO`
-- Secondary link: display demo video `/videos/Courtana_display_demo.mov`
-
-**Card 3 — Seven Oaks** (placeholder):
-
-- Badge: "Coming Soon"
-- Title: "Seven Oaks"
-- Body: "Details coming soon — another venue joining the Courtana network."
-- No button (or muted "Coming Soon" state)
-
-Section title: "Case Studies" with subtitle "Real venues. Real results. See what Courtana looks like in action."
-
-### 5. Route / Page Structure
-
-No new routes needed. The case studies live inline on the landing page and the new partners appear on the existing `/partners` ecosystem page.
-
-## Files Modified
-
-- `src/data/partners.ts` — add 6 new partners, update Peak URL and Casey URL, expand PartnerCategory type
-- `src/components/partners/PartnerCard.tsx` — add 3 new category color mappings
-- `src/pages/Landing.tsx` — restructure case study section into 3-card grid at bottom, embed videos
-- `public/videos/` — 3 new .mov files
+6. Make sure  about section has no blank visuals. Pick a Courtana snapshot, anything that is good for the hero image there. I love the copy on it, and I love the rest of the page, but just make sure that there are no placeholders on that one. I think that's all pretty good, so let's get this thing live with your changes.   feel free to place in some other visual imagery on that, but don't overcrowd it. Just make sure it's clean and fluid and aesthetically pleasing 
 
 ## Technical Notes
 
-- Video files served from `public/videos/` as static assets
-- `<video>` tags with `controls`, `preload="metadata"`, and `playsInline` for mobile
-- Existing partner card component handles the new categories automatically via the color map
-- Seven Oaks is a placeholder — will be fleshed out when assets arrive
+- All video files are .mp4 (H.264) — much smaller than .mov, GitHub-friendly
+- Dialog component already exists in `src/components/ui/dialog.tsx` — use for video modals
+- `<video>` tags use `playsInline`, `preload="metadata"`, `controls` for mobile compatibility
+- Old .mov references in Landing.tsx need to be removed/replaced
+- No new routes or pages needed
+
+## Section Order on Landing Page (final)
+
+1. Hero
+2. Stats Bar
+3. What We Heard (quotes)
+4. Built for Your Venue (value props)
+5. **See It In Action** (display demo TV frame + AI analysis) — NEW
+6. The 8-Week Playbook (timeline)
+7. The Economics (cleaned up, more compact)
+8. What a Partnership Looks Like
+9. Part of Something Bigger (flywheel)
+10. **Case Studies** (Peak, Underground, Urban ATX) — RESTRUCTURED
+11. CTA
