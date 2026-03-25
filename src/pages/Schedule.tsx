@@ -16,7 +16,7 @@ interface TimeBlock {
   label?: string;
 }
 
-const courts = ["Court 1", "Court 2", "Court 3", "Court 4", "Court 5", "Court 6"];
+const courts = ["Court 1", "Court 2", "Court 3", "Court 4", "Court 5", "Court 6", "Court 7", "Court 8"];
 const hours = ["8 AM", "9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM", "6 PM", "7 PM", "8 PM"];
 
 const blockColors: Record<BlockType, string> = {
@@ -67,7 +67,7 @@ const Schedule = () => {
     const data: TimeBlock[][][] = [];
     for (let d = 0; d < 7; d++) {
       data[d] = [];
-      for (let c = 0; c < 6; c++) {
+      for (let c = 0; c < 8; c++) {
         data[d][c] = generateBlocks(d, c);
       }
     }
