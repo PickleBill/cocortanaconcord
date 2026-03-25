@@ -131,9 +131,9 @@ const Events = () => {
                       </div>
                     )}
                     <Button variant="outline" className="w-full border-primary/30 text-primary hover:bg-primary/10 rounded-xl" asChild>
-                      <a href={`mailto:bill@courtana.com?subject=Event: ${event.title}`}>
-                        Customize This Event
-                      </a>
+                      <Link to={`/events/${event.id}`}>
+                        Book Your Spot
+                      </Link>
                     </Button>
                   </div>
                 </div>

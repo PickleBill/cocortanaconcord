@@ -422,9 +422,9 @@ const Landing = () => {
       {/* Roast Coach Modal */}
       <Dialog open={roastModalOpen} onOpenChange={setRoastModalOpen}>
         <DialogContent className="max-w-5xl p-0 bg-black border-foreground/10 overflow-hidden">
-          <DialogTitle className="sr-only">Roast Coach — AI Coaching Review</DialogTitle>
+          <DialogTitle className="sr-only">Peak AI Analysis — Live Match Review</DialogTitle>
           <video
-            src="/videos/AI_Analysis_Roast_Coach.mp4"
+            src="/videos/PEAK_AI_Analysis.mp4"
             className="w-full aspect-video"
             controls
             autoPlay

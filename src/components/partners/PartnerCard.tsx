@@ -75,8 +75,10 @@ export const PartnerCard = ({ partner }: { partner: Partner }) => {
         Coming Soon
       </Button>
     )}
+    </div>
   </motion.div>
 );
+};
 
 export const OpenSlotCard = ({ name, category }: { name: string; category: PartnerCategory }) => (
   <motion.div variants={fadeInUp} className="rounded-2xl p-8 border-2 border-dashed border-border/50 flex flex-col items-center justify-center text-center min-h-[280px] hover:border-primary/30 transition-colors">
