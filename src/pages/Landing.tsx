@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import {
   Camera, Megaphone, Brain, Gamepad2, Users, Radio,
   ArrowRight, Mail, BarChart3, ExternalLink, Zap, MessageSquareQuote,
-  ChevronDown, CheckCircle, Play, Monitor, X
+  ChevronDown, CheckCircle, Play, Monitor, MapPin
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
