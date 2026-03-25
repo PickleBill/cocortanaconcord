@@ -1,68 +1,88 @@
-# Plan: Restore Navigation, Remove Password Gate, Update Courts/Cameras, Add Calendar
 
-## Answering Your Questions First
 
-**Partner Login**: Currently it's just a styled button in the navbar that doesn't do anything. We can wire it up later to a real auth flow, or for now make it link to the Dashboard. -> I don't ever want dead links to ever come out, especially not one that is like a primary CTA. 
+# Concord Pickleball Fork — Full Content Swap
 
-**Remixing**: Yes -- when you remix a project, it creates a full copy of the codebase at that point in time. Your original project stays exactly as it is. You can always go back to any previous build by checking git history or remixing before making changes.
+## Overview
+Swap all Peak Pickleball content to Concord Pickleball across 7 files. Keep all architecture, animations, and page structure. Add 3 new landing page sections. No new files needed except imports.
 
----
+## Files to Modify
 
-## Changes
+### 1. `src/pages/Landing.tsx` — Major content swap + 3 new sections
 
-### 1. Navbar -- Restore All Pages + Remove Lock Icon
+**Data arrays to replace:**
+- `stats` → 8 Indoor Courts, $0 Upfront Cost, 8 Week Pilot, 1 Camera Per Court
+- `quotes` → Chris Williams GoPro quote, "nobody's making money" quote, "pay for itself" quote. Attribution → "Chris Williams, Concord Pickleball"
+- `valueProps` → 6 new items: No More GoPro on the Wall, Events That Make Money, AI Coaching = New Revenue, Gamification That Retains, Highlights Members Will Pay For, Your Screens Working For You
+- `weeks` → Remove `dates` field from all 8 objects. Replace all titles/descriptions with generic versions (Install + Staff Preview, Community Launch Event, Coaching Clinic Series, Tournament Integration, Signature Event, Gamification Goes Live, Matchmaking + Open Play, The Numbers). Remove line 271 that renders `w.dates`.
+- `revenueStreams` → Ranges instead of fixed numbers ($200-400, $300-600, etc.). Totals: $750-1,750 / $2,050-4,100 / $4,100-7,300
 
-Expand nav links back to include all pages. Use a dropdown or "More" menu to keep it clean:
+**Hero updates:** Badge → "Partnership Preview", headline → "Concord Pickleball", subheadline remove April 7 reference, second CTA → "Explore the Ecosystem" linking to /partners
 
-- **Primary links**: The Plan | Events | Dashboard | Discovery
-- **"More" dropdown**: Partners (Ecosystem) | Schedule | About
-- **Partner Login button**: Links to `/dashboard` for now
-- Remove the Lock icon from Dashboard
+**KPI cards:** $0 pilot, $95/court/mo (4 courts = $380, 8 courts = $760), $1,400+/mo projected
 
-### 2. Dashboard -- Remove Password Gate
+**Timeline subtitle:** Remove "April 7 – June 1, 2026" → "Each week builds on the last. By week 8, you'll have hard data on ROI."
 
-Strip out the password check, `sessionStorage`, and the login card. Dashboard renders directly with all its charts and data. Keep all existing content (KPI cards, utilization chart, revenue chart, event table, pilot scorecard). -> I'm down to keep the session storage. I want to make this as real as possible. 
+**Zero Risk box:** New copy referencing GoPro, 4 courts starting point, $380/mo math
 
-### 3. Update Courts/Cameras Numbers Everywhere
+**Add italic note** below revenue table about projections depending on facility size
 
-Change from "4 courts" to **"6 courts"** and add **"10 cameras"** across:
+**3 new sections inserted between Economics and CTA:**
 
-- Landing hero stats: "6 Smart Courts" + add "10 Cameras"
-- Value props: "Cameras on 6 Courts" with updated description
-- Timeline references (week 1 install, week 4 tournament, etc.)
-- Economics: update $95/court × 6 = $570/mo pilot, 16-court expansion math stays.  
-- Zero Risk box: "6 courts. 10 cameras."
-- Dashboard header references
+1. **"What a Partnership Looks Like"** — Two-column glass cards. Left (green border): What Courtana Brings (7 bullet items). Right (muted border): What We'd Love From You (6 bullet items). Subtext: "This is a partnership, not a purchase order."
 
-### 4. Landing Page Timeline -- Make Weeks Clickable
+2. **"Case Study: Peak Pickleball"** — Gold-bordered card with "Flagship Partner" badge, Peak stats (35 courts, 250 members), brief results paragraph, external link button to https://courtana-venue-connect.lovable.app
 
-Each week card in the 8-week timeline becomes a clickable link. Clicking a week navigates to a dedicated route `/week/:num` (or scrolls to an expanded detail view). For now, implement as **expandable cards** -- clicking a week expands it to show full programming details, deliverables become clickable pills that link to relevant pages:
+3. **"Part of Something Bigger"** — Import and render `EcosystemFlywheel` (compact) on left, ecosystem text on right, "Explore the Ecosystem →" button to /partners
 
-- Event deliverables → `/events`
-- Dashboard deliverables → `/dashboard`
-- Coaching deliverables → `/discovery`
+**CTA section:** Headline → "Let's prove it works — together." Remove April 7 reference and calendar button. Buttons: Start a Conversation (mailto), View the Ecosystem (/partners), Pilot Dashboard (/dashboard)
 
-### 5. Add Events Calendar Page
+### 2. `src/data/events.ts` — Replace all events
 
-Create a simple calendar view on the `/schedule` page (it already exists but shows a court grid). Add a **monthly calendar** at the top using the existing shadcn Calendar component or a simple grid, with event dots on dates that have events. Clicking a date shows events for that day. Keep the court schedule grid below it.
+7 genericized template events with placeholder dates in June/July 2026:
+- Launch Event (featured, Special, free, 200 spots)
+- Staff Preview (Clinic, free, invite only, 10 spots)
+- Open Play Night (Open Play, $10, 40 spots)
+- AI Coaching Clinic (Clinic, $25, 16 spots)
+- Community Tournament (Tournament, $40, 64 spots)
+- Friday Night Showcase (Special, $5, 32 spots)
+- Charity Round Robin (Tournament, $20, 24 spots)
 
-### 6. Bottom CTA Buttons -- Simplify & Link
+### 3. `src/pages/Events.tsx` — Text and button updates
 
-The bottom CTA buttons on the landing page: make "Let's Go" mailto and "Pilot Dashboard" link to `/dashboard`. Add a third: "View Calendar" → `/schedule`.
+- Title: "Event Templates — Courtana × Concord"
+- Subtitle: "These events are included in your pilot..."
+- All booking buttons → "Customize This Event" with `variant="outline"`
+- Bottom CTA: "Want to customize these for Concord?"
 
-## Files Modified
+### 4. `src/pages/Dashboard.tsx` — Preview state
 
-- `src/components/Navbar.tsx` -- expanded nav with More dropdown, Partner Login → /dashboard
-- `src/pages/Dashboard.tsx` -- remove password gate (lines 51-68), render dashboard directly
-- `src/pages/Landing.tsx` -- update stats (6 courts, 10 cameras), make week cards expandable/clickable, update all court references, update CTA buttons
-- `src/data/events.ts` -- update any "4 court" references
-- `src/pages/Schedule.tsx` -- add monthly calendar header with event dots above the court grid
+- Header: "Concord Pickleball — Pilot Dashboard"
+- Badge: "Preview Mode" instead of "Week 1 of 8"
+- Date range: "Dates TBD — pending kickoff"
+- KPI sub text: "Awaiting pilot launch"
+- `pilotEvents` → genericized (Week 1-7 dates, $0 revenue, "Planned" status)
+- Add glass banner before KPIs explaining the dashboard goes live at install
 
-## Remix Strategy
+### 5. `src/data/partners.ts` — Add 2 entries
 
-To split features into separate remixes later:
+- Concord Pickleball (Coming Soon, Community category)
+- Peak Pickleball (Live, Community category, links to https://courtana-venue-connect.lovable.app)
 
-- **Remix before each major change** to preserve the current state as a fallback
-- **Venue-specific portals**: Remix this project for each new venue (Peak, next venue, etc.) and customize the content
-- **Core platform vs partner sites**: Keep this as the "Peak portal" remix; create a clean "template" remix with placeholder content for new venues
-- The Discovery dashboard, Partners ecosystem, and Schedule can each be extracted into standalone remixes if needed
+### 6. `src/components/Navbar.tsx` — Reorder links
+
+- Primary: The Plan, Events, Ecosystem (/partners), Dashboard
+- More dropdown: Schedule, About, Discovery
+
+### 7. `src/components/Footer.tsx` — Three-column layout
+
+- Col 1: Courtana wordmark + tagline
+- Col 2: Quick links (The Plan, Events, Ecosystem, Dashboard)
+- Col 3: Contact (bill@courtana.com, courtana.com)
+- Bottom: "© 2026 Courtana · Built with intention"
+
+## Technical Notes
+- Import `EcosystemFlywheel` in Landing.tsx from `@/components/partners/EcosystemFlywheel`
+- Remove `CalendarDays` import from Landing.tsx (calendar CTA removed)
+- Schedule page courts array: keep as 6 courts (could update to 8 to match Concord but prompt doesn't specify)
+- All existing animations, glass styling, and responsive breakpoints stay unchanged
+
