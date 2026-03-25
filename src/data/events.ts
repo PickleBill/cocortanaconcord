@@ -85,6 +85,7 @@ export const events: EventData[] = [
     whatsIncluded: ["3 hours of open play", "Smart court features", "Skill-based matching", "Weekly leaderboard entry"],
     whoItsFor: "All levels. Members free, guests $10.",
     format: "Open rotation. Courtana handles court assignments and skill matching.",
+    revenueNote: "$10/guest × 40 spots = $400/night recurring revenue",
   },
   {
     id: "ai-coaching-clinic",
