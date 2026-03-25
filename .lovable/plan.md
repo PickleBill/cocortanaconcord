@@ -1,61 +1,41 @@
 
 
-# V2 Polish — Mobile Video Fix + Partner Filtering + New Partner
+# Final Cleanup — Video Swap, Partner Visuals, Event UX
 
-## Where We Are
+## What this covers
 
-- **V2a** — Done (branding, cleanup, favicon, 8 courts)
-- **V2b + V2c** — Done (pull-quote, Roast Coach video, camera layout, pilot timeline, revenue blurbs, mailto CTAs)
-- **V2d** — Next after this. You do NOT need to do anything yet. The fork/remix happens after V2d.
+4 issues you flagged:
 
-This prompt handles three things you flagged: mobile video autoplay, partner page filtering, and adding Gaby (G5quared).
+1. **Roast Coach video swap** — replace with `PEAK_AI_Analysis.mp4` (the 4th unused video in `/public/videos/`)
+2. **Partner cards need visuals** — add preview thumbnails/screenshots for partners with live URLs using favicon/OG approach, and a gradient placeholder for those without
+3. **Events page UX** — change "Customize This Event" to "Book Your Spot" linking to the event detail page (`/events/{id}`) where the booking modal already exists
+4. **Mobile responsiveness pass** — verify grids stack properly, video cards don't overflow
 
 ---
 
-## What Gets Built
+## Changes by File
 
-### 1. Mobile Video Autoplay Fix (`src/pages/Landing.tsx`)
+### `src/pages/Landing.tsx`
+- Swap Roast Coach video from `AI_Analysis_Roast_Coach.mp4` to `PEAK_AI_Analysis.mp4`
+- Update the card title from "Roast Coach — AI Coaching Review" to "Peak AI Analysis — Live Match Review"
+- Update modal title and description to match
 
-Mobile Safari and Chrome block autoplay of videos unless they're muted AND inline. The videos already have `muted` and `playsInline`, but some mobile browsers still won't autoplay large videos. Fix:
+### `src/components/partners/PartnerCard.tsx`
+- Add a visual header area to each partner card: a small preview image using `https://www.google.com/s2/favicons?domain={url}&sz=64` for partners with URLs, or a gradient placeholder with their icon for those without
+- This gives every card a visual element at the top without requiring manual screenshots
 
-- Add explicit `autoPlay` attribute to the display demo video (it may be missing it)
-- Add `poster` attributes using a simple gradient placeholder so cards don't render blank on mobile
-- For the case study videos and "See It In Action" section, ensure all `<video>` tags have: `autoPlay`, `muted`, `playsInline`, `loop`, `preload="metadata"`
-- Add an `onLoadedData` play trigger as a fallback: `onLoadedData={(e) => e.currentTarget.play()}` — this catches cases where autoplay is blocked
+### `src/pages/Events.tsx`
+- Change ALL "Customize This Event" button text to **"Book Your Spot"**
+- Change the `<a href="mailto:...">` to `<Link to={/events/${event.id}}>` so it routes to the event detail page with the existing booking modal
+- Featured event button gets the same treatment
+- The event detail page already has a working "Book Your Spot" button with the registration modal — this just connects the flow
 
-This applies to all 5 video embeds on the landing page.
+### `src/data/events.ts`
+- No changes needed — `revenueNote` and all data fields are already populated
 
-### 2. Partner Page — Venue vs Ecosystem Filtering (`src/pages/Partners.tsx`)
-
-Add tab-based filtering at the top of the partner grid:
-
-- **All** — shows everything (default)
-- **Venue Partners** — filters to `category === "Venue"`
-- **Ecosystem Partners** — filters to everything that is NOT a Venue
-
-Uses the existing Tabs component from `src/components/ui/tabs.tsx`. Simple state filter, no new data structures needed.
-
-### 3. New Partner: G5quared / Gaby (`src/data/partners.ts`)
-
-Add a new category: `"Marketing"` — Gaby is a social media ads and business generation expert, not just an influencer. He's a performance marketer.
-
-New partner entry:
-- **Name:** G5quared (Gaby)
-- **Category:** Marketing (new)
-- **Secondary categories:** Influencer
-- **Status:** Live
-- **URL:** https://www.instagram.com/g5quared
-- **Description:** Social media advertising and business generation expert — Facebook ads, content strategy, and growth marketing for venues and brands.
-- **Connection:** Marketing partner driving paid acquisition, social ad campaigns, and venue business generation across the Courtana network.
-- **Icon:** `Megaphone` (from lucide-react, already imported in other files)
-
-Also update `PartnerCard.tsx` to add a color mapping for "Marketing": `bg-emerald-500/20 text-emerald-400`.
-
-### 4. Mobile Spacing Pass (`src/pages/Partners.tsx`, `src/pages/Landing.tsx`)
-
-- Partner cards grid: ensure `grid-cols-1` on mobile (already `md:grid-cols-2 lg:grid-cols-3` — verify)
-- Case study cards: same check
-- "See It In Action" video grid: verify it stacks on mobile (currently `md:grid-cols-3`)
+### `src/pages/Partners.tsx`
+- Mobile grid already uses `grid-cols-1` on small screens — verified correct
+- No changes needed here
 
 ---
 
@@ -63,16 +43,15 @@ Also update `PartnerCard.tsx` to add a color mapping for "Marketing": `bg-emeral
 
 | File | Changes |
 |------|---------|
-| `src/pages/Landing.tsx` | Add `onLoadedData` play fallback to all 5 videos, verify autoPlay/muted/playsInline on all |
-| `src/pages/Partners.tsx` | Add Tabs for All / Venue Partners / Ecosystem Partners filtering |
-| `src/data/partners.ts` | Add "Marketing" to PartnerCategory, add G5quared entry |
-| `src/components/partners/PartnerCard.tsx` | Add "Marketing" color mapping |
+| `src/pages/Landing.tsx` | Swap Roast Coach → PEAK_AI_Analysis video, update labels |
+| `src/components/partners/PartnerCard.tsx` | Add favicon/gradient visual header to each card |
+| `src/pages/Events.tsx` | "Customize This Event" → "Book Your Spot" with Link to detail page |
 
 ---
 
-## What You Need To Do
+## What's NOT in this prompt
 
-**Nothing right now.** After this lands, one more prompt (V2d) handles form wiring and analytics. Then you remix for the generic template.
-
-Regarding the password gate on Dashboard — you mentioned you're unsure about it. We can skip it and just keep the Dashboard public for now. It's a soft preview anyway. We can always add it later if Chris wants privacy.
+- Password gate on Dashboard — skipped per your feedback
+- Video CDN migration — manual step for later
+- The fork/remix — happens after this cleanup ships
 
