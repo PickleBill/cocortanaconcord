@@ -346,6 +346,43 @@ const Landing = () => {
                 <p className="text-xs text-muted-foreground">Paddle identification, shot tracking, and real-time analysis. Click to expand.</p>
               </div>
             </motion.div>
+            {/* Roast Coach — AI Coaching Review */}
+            <motion.div
+              className="cursor-pointer group"
+              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
+              onClick={() => setRoastModalOpen(true)}
+            >
+              <div className="relative rounded-2xl overflow-hidden bg-black border-4 border-foreground/10 shadow-2xl">
+                <div className="absolute top-0 left-0 right-0 h-6 bg-foreground/5 flex items-center justify-center z-10">
+                  <div className="flex gap-1.5">
+                    <div className="w-2 h-2 rounded-full bg-red-500/50" />
+                    <div className="w-2 h-2 rounded-full bg-amber-500/50" />
+                    <div className="w-2 h-2 rounded-full bg-primary/50" />
+                  </div>
+                </div>
+                <video
+                  src="/videos/AI_Analysis_Roast_Coach.mp4"
+                  className="w-full aspect-video object-cover"
+                  muted
+                  playsInline
+                  preload="metadata"
+                  loop
+                  autoPlay
+                />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
+                  <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center">
+                    <Play className="text-primary-foreground ml-1" size={28} />
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 text-center">
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <Zap className="text-primary" size={16} />
+                  <span className="text-sm font-bold text-foreground">Roast Coach — AI Coaching Review</span>
+                </div>
+                <p className="text-xs text-muted-foreground">Fun, honest AI analysis of your coaching style. Click to expand.</p>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
