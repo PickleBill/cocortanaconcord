@@ -364,7 +364,7 @@ const Landing = () => {
                   </div>
                 </div>
                 <video
-                  src="/videos/AI_Analysis_Roast_Coach.mp4"
+                  src="/videos/PEAK_AI_Analysis.mp4"
                   className="w-full aspect-video object-cover"
                   muted
                   playsInline
@@ -382,9 +382,9 @@ const Landing = () => {
               <div className="mt-4 text-center">
                 <div className="flex items-center justify-center gap-2 mb-1">
                   <Zap className="text-primary" size={16} />
-                  <span className="text-sm font-bold text-foreground">Roast Coach — AI Coaching Review</span>
+                  <span className="text-sm font-bold text-foreground">Peak AI Analysis — Live Match Review</span>
                 </div>
-                <p className="text-xs text-muted-foreground">Fun, honest AI analysis of your coaching style. Click to expand.</p>
+                <p className="text-xs text-muted-foreground">Advanced match analysis with shot-by-shot breakdown. Click to expand.</p>
               </div>
             </motion.div>
           </div>
@@ -422,9 +422,9 @@ const Landing = () => {
       {/* Roast Coach Modal */}
       <Dialog open={roastModalOpen} onOpenChange={setRoastModalOpen}>
         <DialogContent className="max-w-5xl p-0 bg-black border-foreground/10 overflow-hidden">
-          <DialogTitle className="sr-only">Roast Coach — AI Coaching Review</DialogTitle>
+          <DialogTitle className="sr-only">Peak AI Analysis — Live Match Review</DialogTitle>
           <video
-            src="/videos/AI_Analysis_Roast_Coach.mp4"
+            src="/videos/PEAK_AI_Analysis.mp4"
             className="w-full aspect-video"
             controls
             autoPlay

@@ -1,8 +1,8 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Calendar, Clock, Users, DollarSign, Search, TrendingUp } from "lucide-react";
-import { format, parseISO } from "date-fns";
+import { Clock, Users, DollarSign, Search, TrendingUp } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Navbar from "@/components/Navbar";
@@ -59,9 +59,9 @@ const Events = () => {
                     <span className="flex items-center gap-1.5"><DollarSign size={16} /> {featured.price === 0 ? "Free" : `$${featured.price}`}</span>
                   </div>
                   <Button variant="outline" className="border-primary/30 text-primary hover:bg-primary/10 rounded-xl px-8 py-5 text-base font-bold" asChild>
-                    <a href={`mailto:bill@courtana.com?subject=Event: ${featured.title}`}>
-                      Customize This Event
-                    </a>
+                    <Link to={`/events/${featured.id}`}>
+                      Book Your Spot
+                    </Link>
                   </Button>
                 </div>
               </div>
@@ -131,9 +131,9 @@ const Events = () => {
                       </div>
                     )}
                     <Button variant="outline" className="w-full border-primary/30 text-primary hover:bg-primary/10 rounded-xl" asChild>
-                      <a href={`mailto:bill@courtana.com?subject=Event: ${event.title}`}>
-                        Customize This Event
-                      </a>
+                      <Link to={`/events/${event.id}`}>
+                        Book Your Spot
+                      </Link>
                     </Button>
                   </div>
                 </div>
