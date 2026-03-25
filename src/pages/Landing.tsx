@@ -139,6 +139,7 @@ const Landing = () => {
   const [expandedWeek, setExpandedWeek] = useState<number | null>(null);
   const [displayModalOpen, setDisplayModalOpen] = useState(false);
   const [aiModalOpen, setAiModalOpen] = useState(false);
+  const [roastModalOpen, setRoastModalOpen] = useState(false);
   const [revenueOpen, setRevenueOpen] = useState(false);
 
   return (
