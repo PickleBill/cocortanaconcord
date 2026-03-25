@@ -38,6 +38,19 @@ const howItWorks = [
 ];
 
 const Partners = () => {
+  const [view, setView] = useState("all");
+
+  const filteredPartners = useMemo(() => {
+    if (view === "venue") return partners.filter((p) => p.category === "Venue");
+    if (view === "ecosystem") return partners.filter((p) => p.category !== "Venue");
+    return partners;
+  }, [view]);
+
+  const filteredSlots = useMemo(() => {
+    if (view === "venue") return [];
+    return openSlots;
+  }, [view]);
+
   return (
     <div className="min-h-screen">
       <Navbar />
