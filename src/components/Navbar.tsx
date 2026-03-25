@@ -6,14 +6,14 @@ import { Button } from "@/components/ui/button";
 const primaryLinks = [
   { label: "The Plan", href: "/" },
   { label: "Events", href: "/events" },
+  { label: "Ecosystem", href: "/partners" },
   { label: "Dashboard", href: "/dashboard" },
-  { label: "Discovery", href: "/discovery" },
 ];
 
 const moreLinks = [
-  { label: "Partners", href: "/partners" },
   { label: "Schedule", href: "/schedule" },
   { label: "About", href: "/about" },
+  { label: "Discovery", href: "/discovery" },
 ];
 
 const Navbar = () => {

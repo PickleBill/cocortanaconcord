@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 import {
   Camera, Megaphone, Brain, Gamepad2, Users, Radio,
   ArrowRight, Mail, BarChart3, ExternalLink, Zap, MessageSquareQuote,
-  ChevronDown, CalendarDays
+  ChevronDown, CheckCircle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import EcosystemFlywheel from "@/components/partners/EcosystemFlywheel";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -20,116 +21,116 @@ const stagger = {
 };
 
 const stats = [
-  { value: "6", label: "Smart Courts" },
-  { value: "10", label: "Cameras" },
-  { value: "$0", label: "Upfront" },
-  { value: "May 9", label: "Grand Opening" },
+  { value: "8", label: "Indoor Courts" },
+  { value: "$0", label: "Upfront Cost" },
+  { value: "8", label: "Week Pilot" },
+  { value: "1", label: "Camera Per Court" },
 ];
 
 const quotes = [
-  "I need to justify every dollar to an owner who invested $1.5 million in this facility.",
-  "The biggest problem with tech tools is they lose novelty after a month. Gamification and badges — that's what keeps people coming back.",
-  "If you can show me the numbers after the pilot, I'll expand to all 16 courts.",
+  "Members keep asking me for footage and I've got one GoPro cable-tied to the wall. I don't want to go find clips and send them to people.",
+  "Nobody's making money from pickleball. Show me the numbers and I'll look at it — but the last thing I want to do is spend more money.",
+  "If it can pay for itself and I don't have to deal with it, I'm interested.",
 ];
 
 const valueProps = [
-  { icon: Camera, title: "Cameras on 6 Courts", desc: "10 cameras across 6 courts. Non-invasive install. Instant replay on court-side displays. Players see their highlights in real time." },
-  { icon: Megaphone, title: "We Run Your Events", desc: "May 1 tournament? We put cameras on it. Grand opening? We live-broadcast it. Coaching clinics? We handle booking and payment." },
-  { icon: Brain, title: "AI Coaching at $20–25", desc: "Your coaches' lessons, enhanced with AI video review. A new revenue tier between \"free advice\" and \"$80/hr lessons.\" 70% to coach, 20% to Peak, 10% to Courtana." },
-  { icon: Gamepad2, title: "Gamification That Sticks", desc: "Badges, XP, leaderboards, trick shot recognition. The dopamine loop that makes players say \"one more game.\" This is how we beat the 1–2 month novelty dropoff." },
-  { icon: Users, title: "Open Play, Solved", desc: "Real-time court displays showing who's playing, how many spots are open, skill levels on court. No more \"who's in?\" text chains. Players scan in and Courtana matches them." },
-  { icon: Radio, title: "Live Broadcast to the Highway", desc: "Peak is 30 seconds from a Sheraton and visible from the highway. Live streams from championship courts turn cameras into a marketing billboard." },
+  { icon: Camera, title: "No More GoPro on the Wall", desc: "One PTZ camera per court replaces the cable-tied GoPro. Auto-generated highlights. Members get their clips without you lifting a finger. QR code sign-up, highlights delivered automatically." },
+  { icon: Megaphone, title: "Events That Make Money", desc: "Queen City Open on smart courts? Every match recorded, highlights auto-generated, live leaderboard. Players pay more for the experience. You keep the revenue — we handle the tech." },
+  { icon: Brain, title: "AI Coaching = New Revenue", desc: "$20-25 per AI video review. A new tier between free tips and $80/hr lessons. Revenue split: 70% to coach, 20% to Concord, 10% to Courtana. Your first clinic pays for the month." },
+  { icon: Gamepad2, title: "Gamification That Retains", desc: "Badges, XP, leaderboards, trick shot recognition. The thing that makes members renew instead of leaving after the novelty wears off. Retention is where you make money." },
+  { icon: Users, title: "Highlights Members Will Pay For", desc: "10 free highlights to hook them. Then they pay per clip. The members already asking you for footage? Now they get it instantly and you earn from it." },
+  { icon: Radio, title: "Your Screens, Working For You", desc: "Court-side displays show player stats, leaderboards, and instant replay. Down the road, sponsored content from local businesses — turning your TVs into a revenue stream." },
 ];
 
 const weeks = [
   {
-    num: 1, dates: "April 7–13", title: "Install + Coach Preview", focus: "LAUNCH", color: "bg-purple-500/20 text-purple-400",
-    desc: "Install 10 cameras across 6 courts. Configure displays. Run a private session for Chris and his 5 coaches — let them see AI analysis on their own games. Coaches become evangelists before players ever see it.",
+    num: 1, title: "Install + Staff Preview", focus: "LAUNCH", color: "bg-purple-500/20 text-purple-400",
+    desc: "Install cameras on your pilot courts. Configure displays. Run a private demo for your coaching staff — they see AI analysis on their own games before anyone else. Coaches become evangelists before players ever see it.",
     deliverables: [
       { text: "Hardware installed", link: null },
-      { text: "Coach training session", link: "/events/coaches-preview" },
+      { text: "Staff training session", link: null },
       { text: "Baseline metrics captured", link: "/dashboard" },
-      { text: "Staff briefed", link: null },
+      { text: "Launch date confirmed", link: null },
     ],
   },
   {
-    num: 2, dates: "April 14–20", title: "Courts Complete Celebration", focus: "EVENTS", color: "bg-amber-500/20 text-amber-400",
-    desc: "All 16 pickleball courts finish April 15. Mark the moment with a \"Courts Complete\" open house on the 6 Courtana courts. Free play, live highlights on the big screens, player account sign-ups. First taste of the gamification system.",
+    num: 2, title: "Community Launch Event", focus: "EVENTS", color: "bg-amber-500/20 text-amber-400",
+    desc: "Your first Courtana-powered event. Open play night with live highlights on the big screens, player sign-ups, gamification preview. Free entry for members, small fee for guests. We promote through our network + your member list.",
     deliverables: [
-      { text: "Open house event", link: "/events" },
+      { text: "Launch event", link: "/events" },
       { text: "Player accounts created", link: "/dashboard" },
       { text: "First highlights generated", link: null },
       { text: "Social content captured", link: null },
     ],
   },
   {
-    num: 3, dates: "April 21–27", title: "Coaching Clinic Series Launches", focus: "EVENTS", color: "bg-amber-500/20 text-amber-400",
-    desc: "First paid coaching clinic on Courtana courts. Coach-led drills with AI analysis delivered to each player within 24 hours. $25–40/player, 16 spots. Test the AI coaching revenue model Chris was excited about.",
+    num: 3, title: "Coaching Clinic Series", focus: "EVENTS", color: "bg-amber-500/20 text-amber-400",
+    desc: "First paid coaching clinic on smart courts. Coach-led drills with AI analysis delivered to each player. $25-40/player, 12-16 spots. Revenue split kicks in immediately. This validates the AI coaching revenue model.",
     deliverables: [
-      { text: "Paid clinic ($400–640 revenue)", link: "/events/ai-coaching-clinic" },
+      { text: "Paid clinic revenue", link: null },
       { text: "AI analysis reports", link: null },
-      { text: "Coach feedback", link: "/discovery" },
-      { text: "Revenue model validated", link: "/dashboard" },
+      { text: "Coach feedback loop", link: null },
+      { text: "Revenue model tested", link: "/dashboard" },
     ],
   },
   {
-    num: 4, dates: "April 28 – May 4", title: "TOURNAMENT WEEK — Spring Smash", focus: "EVENTS", color: "bg-amber-500/20 text-amber-400",
-    desc: "May 1–4 tournament targeting 300 players. Courtana cameras live on 6 courts — every match recorded, highlights auto-generated, leaderboard running on displays. This is the showcase moment. Every player leaves with a highlight reel and a reason to come back.",
+    num: 4, title: "Tournament Integration", focus: "EVENTS", color: "bg-amber-500/20 text-amber-400",
+    desc: "Courtana cameras go live on tournament courts. Every match recorded, highlights auto-generated, live leaderboard on displays. Players leave with shareable highlight reels and a reason to come back.",
     deliverables: [
-      { text: "300 players exposed to Courtana", link: "/events/spring-smash" },
-      { text: "Highlight reels for all", link: null },
-      { text: "Tournament leaderboard", link: "/dashboard" },
-      { text: "Massive social content", link: null },
+      { text: "Tournament coverage", link: "/events" },
+      { text: "Highlight reels", link: null },
+      { text: "Live leaderboard", link: "/dashboard" },
+      { text: "Social content engine", link: null },
     ],
   },
   {
-    num: 5, dates: "May 5–11", title: "GRAND OPENING — Dinks & Drinks", focus: "LAUNCH", color: "bg-purple-500/20 text-purple-400",
-    desc: "May 9 grand opening with Chris Kelly. Live broadcast from championship courts. Courtana powers the on-screen experience — player stats, live leaderboard, instant replay on the big screens. Dinks & Drinks sponsored event. The facility's coming-out party, powered by smart court tech.",
+    num: 5, title: "Signature Event", focus: "LAUNCH", color: "bg-purple-500/20 text-purple-400",
+    desc: "Your big moment. We help plan and co-promote a signature event — could be a grand opening, a pro-am, a themed night. Courtana powers the on-screen experience: player stats, instant replay, live broadcast. This is the event people talk about.",
     deliverables: [
-      { text: "Grand opening event", link: "/events/grand-opening" },
+      { text: "Flagship event", link: "/events" },
       { text: "Live broadcast", link: null },
-      { text: "Chris Kelly partnership content", link: null },
+      { text: "Press/social coverage", link: null },
       { text: "Membership spike tracking", link: "/dashboard" },
     ],
   },
   {
-    num: 6, dates: "May 12–18", title: "Gamification Goes Live", focus: "DATA", color: "bg-cyan-500/20 text-cyan-400",
-    desc: "Full gamification rollout: badges, XP points, achievement system, trick shot recognition, weekly leaderboard. This is the retention play — the thing that beats the \"novelty wears off after a month\" problem Chris identified. Players start earning status.",
+    num: 6, title: "Gamification Goes Live", focus: "DATA", color: "bg-cyan-500/20 text-cyan-400",
+    desc: "Full gamification system: badges, XP, achievement tracking, weekly leaderboard, trick shot recognition. Players start earning status and competing for spots on the board. This is the retention engine — the thing that keeps them coming back in month 2 and beyond.",
     deliverables: [
       { text: "Gamification system live", link: null },
-      { text: "Badge engagement tracking", link: "/dashboard" },
+      { text: "Engagement tracking", link: "/dashboard" },
       { text: "Leaderboard competition", link: null },
       { text: "Repeat visit data", link: "/dashboard" },
     ],
   },
   {
-    num: 7, dates: "May 19–25", title: "Matchmaking + Open Play Optimization", focus: "GROWTH", color: "bg-primary/20 text-primary",
-    desc: "Turn on skill-based matchmaking and the open play display system. Real-time court status on screens — who's playing, skill level, spots open. \"Find Your Fourth\" feature goes live. Guest fees for non-members who come in through Courtana. Hotel guests from the Sheraton start discovering Peak through the live broadcast.",
+    num: 7, title: "Matchmaking + Open Play", focus: "GROWTH", color: "bg-primary/20 text-primary",
+    desc: "Skill-based matchmaking and open play optimization. Real-time court displays show availability and skill levels. 'Find Your Fourth' feature goes live. Guest fees for non-members who discover your venue through Courtana.",
     deliverables: [
       { text: "Matchmaking active", link: null },
       { text: "Open play displays", link: "/schedule" },
       { text: "Guest fee revenue", link: "/dashboard" },
-      { text: "Walk-in attribution", link: "/discovery" },
+      { text: "Network growth", link: null },
     ],
   },
   {
-    num: 8, dates: "May 26 – June 1", title: "The Numbers", focus: "REVIEW", color: "bg-red-500/20 text-red-400",
-    desc: "End-of-pilot ROI review with Chris and the owner. Hard numbers: court utilization lift, revenue from events and AI coaching, player engagement metrics, highlights generated, new player accounts. The question isn't \"should we keep this?\" — it's \"how fast can we expand to all 16 courts?\"",
+    num: 8, title: "The Numbers", focus: "REVIEW", color: "bg-red-500/20 text-red-400",
+    desc: "ROI review with your team. Court utilization data, event revenue, coaching income, player engagement, highlights generated. Clear picture of what continuing and expanding looks like. The numbers make the decision for you.",
     deliverables: [
-      { text: "ROI dashboard presentation", link: "/dashboard" },
+      { text: "ROI dashboard", link: "/dashboard" },
       { text: "Expansion proposal", link: null },
-      { text: "16-court timeline", link: null },
-      { text: "Contract finalization", link: null },
+      { text: "Growth plan", link: null },
+      { text: "Go/No-Go decision", link: null },
     ],
   },
 ];
 
 const revenueStreams = [
-  { name: "Premium court pricing ($25→$30/hr on 6 courts)", conservative: "$450", realistic: "$900", upside: "$1,350" },
-  { name: "AI coaching reviews (5 coaches × $25 sessions)", conservative: "$500", realistic: "$1,000", upside: "$1,500" },
-  { name: "Tournament/event revenue share", conservative: "$200", realistic: "$500", upside: "$800" },
-  { name: "Walk-in/guest fees (Sheraton + highway visibility)", conservative: "$100", realistic: "$300", upside: "$500" },
-  { name: "Open play optimization (reduced no-shows, better fill)", conservative: "$100", realistic: "$250", upside: "$400" },
+  { name: "Premium court pricing", conservative: "$200–400", realistic: "$500–900", upside: "$900–1,500" },
+  { name: "AI coaching revenue", conservative: "$300–600", realistic: "$800–1,500", upside: "$1,500–2,500" },
+  { name: "Events & tournaments", conservative: "$150–400", realistic: "$400–800", upside: "$800–1,500" },
+  { name: "Walk-in / guest fees", conservative: "$50–200", realistic: "$200–500", upside: "$500–1,000" },
+  { name: "Open play optimization", conservative: "$50–150", realistic: "$150–400", upside: "$400–800" },
 ];
 
 const Landing = () => {
@@ -150,15 +151,15 @@ const Landing = () => {
           <motion.div initial="hidden" animate="visible" variants={stagger}>
             <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20 mb-10">
               <span className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse" />
-              <span className="text-base font-semibold text-primary tracking-wide">Live Partnership Portal</span>
+              <span className="text-base font-semibold text-primary tracking-wide">Partnership Preview</span>
             </motion.div>
 
             <motion.h1 variants={fadeInUp} className="text-foreground mb-6" style={{ fontSize: "clamp(3rem, 7vw, 5rem)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>
-              Courtana × <span className="text-gradient-green">Peak Pickleball</span>
+              Courtana × <span className="text-gradient-green">Concord Pickleball</span>
             </motion.h1>
 
             <motion.p variants={fadeInUp} className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">
-              Smart courts. Real data. Zero risk. Your 8-week launch plan starts April 7.
+              Smart courts. Real data. Zero risk. Here's what the first 8 weeks look like.
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-5 justify-center">
@@ -169,7 +170,7 @@ const Landing = () => {
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="border-border text-foreground hover:bg-secondary rounded-xl px-10 py-6 text-lg font-bold" asChild>
-                <Link to="/events">Browse Events</Link>
+                <Link to="/partners">Explore the Ecosystem</Link>
               </Button>
             </motion.div>
           </motion.div>
@@ -206,7 +207,7 @@ const Landing = () => {
               ))}
             </div>
             <motion.p variants={fadeInUp} className="text-sm text-muted-foreground">
-              From our conversation with <span className="text-foreground font-semibold">Chris Kepko</span>, Head Pro & GM
+              From our visit with <span className="text-foreground font-semibold">Chris Williams</span>, Concord Pickleball
             </motion.p>
           </motion.div>
         </div>
@@ -216,7 +217,7 @@ const Landing = () => {
       <section className="py-24 px-4 bg-card/50">
         <div className="container mx-auto max-w-6xl">
           <motion.h2 className="text-foreground text-center mb-4 font-extrabold" style={{ fontSize: "clamp(2rem, 5vw, 3rem)", lineHeight: 1.15 }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
-            Built for Peak
+            Built for Your Venue
           </motion.h2>
           <motion.p className="text-lg text-muted-foreground text-center mb-14 max-w-xl mx-auto" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
             Every feature designed around your facility, your coaches, and your players.
@@ -242,7 +243,7 @@ const Landing = () => {
             The 8-Week Playbook
           </motion.h2>
           <motion.p className="text-lg text-muted-foreground text-center mb-14 max-w-xl mx-auto" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
-            April 7 – June 1, 2026. Each week builds on the last. By week 8, you'll have hard data on ROI.
+            Each week builds on the last. By week 8, you'll have hard data on ROI.
           </motion.p>
           <motion.div className="space-y-4 relative" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={stagger}>
             <div className="absolute left-7 top-0 bottom-0 w-px bg-border hidden md:block" />
@@ -268,7 +269,6 @@ const Landing = () => {
                         <span className={`text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider ${w.color}`}>{w.focus}</span>
                         <ChevronDown size={18} className={`text-muted-foreground transition-transform ${isOpen ? "rotate-180" : ""}`} />
                       </div>
-                      <p className="text-xs text-muted-foreground mb-2 font-medium">{w.dates}</p>
 
                       <AnimatePresence>
                         {isOpen && (
@@ -279,7 +279,7 @@ const Landing = () => {
                             transition={{ duration: 0.3 }}
                             className="overflow-hidden"
                           >
-                            <p className="text-base text-muted-foreground mb-5 leading-relaxed">{w.desc}</p>
+                            <p className="text-base text-muted-foreground mb-5 leading-relaxed mt-3">{w.desc}</p>
                             <div className="flex flex-wrap gap-2">
                               {w.deliverables.map((d) =>
                                 d.link ? (
@@ -322,9 +322,9 @@ const Landing = () => {
           </motion.h2>
           <motion.div className="grid md:grid-cols-3 gap-8 mb-14" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
             {[
-              { label: "Peak's Investment During Pilot", value: "$0", sub: "8 weeks of smart court tech, events support, and marketing — on us." },
-              { label: "Post-Pilot: If You Expand", value: "$95/court/mo", sub: "6 courts = $570/mo during pilot. 16 courts = $1,520/mo at full expansion." },
-              { label: "Projected Revenue Lift", value: "$2,000–4,500/mo", sub: "From premium court pricing, coaching, events, and walk-ins combined.", gold: true },
+              { label: "Your Investment During Pilot", value: "$0", sub: "Cameras, software, event support — we install everything, we pay for everything. 8 weeks." },
+              { label: "After the Pilot", value: "$95/court/mo", sub: "4 courts = $380/month. 8 courts = $760/month. Your first coaching clinic covers it." },
+              { label: "Projected New Revenue", value: "$1,400+/mo", sub: "From premium court pricing, AI coaching, highlight sales, and event revenue.", gold: true },
             ].map((m) => (
               <motion.div key={m.label} variants={fadeInUp} className={`glass rounded-2xl p-8 text-center ${m.gold ? "border-accent/30 glow-green" : ""}`}>
                 <div className="text-sm text-muted-foreground mb-3 font-medium">{m.label}</div>
@@ -334,7 +334,7 @@ const Landing = () => {
             ))}
           </motion.div>
 
-          <motion.div className="glass rounded-2xl overflow-x-auto mb-10" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+          <motion.div className="glass rounded-2xl overflow-x-auto mb-4" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
             <table className="w-full">
               <thead>
                 <tr className="border-b border-border">
@@ -355,13 +355,16 @@ const Landing = () => {
                 ))}
                 <tr className="bg-primary/5">
                   <td className="p-5 font-bold text-foreground text-lg">Total Monthly</td>
-                  <td className="p-5 text-right font-bold text-muted-foreground text-lg">$1,350</td>
-                  <td className="p-5 text-right font-bold text-foreground text-lg">$2,950</td>
-                  <td className="p-5 text-right font-bold text-primary text-lg">$4,550</td>
+                  <td className="p-5 text-right font-bold text-muted-foreground text-lg">$750–1,750</td>
+                  <td className="p-5 text-right font-bold text-foreground text-lg">$2,050–4,100</td>
+                  <td className="p-5 text-right font-bold text-primary text-lg">$4,100–7,300</td>
                 </tr>
               </tbody>
             </table>
           </motion.div>
+          <motion.p className="text-sm text-muted-foreground italic mb-10 text-center" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+            Exact projections depend on your facility size, membership count, court pricing, and event programming. We build your model together during Week 1.
+          </motion.p>
 
           {/* Zero Risk Box */}
           <motion.div className="glass rounded-2xl p-8 border-primary/20 glow-green" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
@@ -370,8 +373,107 @@ const Landing = () => {
               Zero Risk
             </h3>
             <p className="text-base text-muted-foreground leading-relaxed">
-              6 courts. 10 cameras. Zero hardware cost. 2–3 months free. Then $95/court/month — which your first AI coaching clinic pays for twice over. Week 6 go/no-go review: if the numbers don't work, we pull everything. If they do, we expand to all 16. The only risk is not trying.
+              Start with 4 courts. One camera each. Zero hardware cost. No subscription during the 8-week pilot. After that, 4 courts at $95/month = $380. Your first AI coaching clinic makes that back in a single session. If the numbers don't work, we pull everything. The only risk is dealing with one more GoPro request from a member.
             </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* What a Partnership Looks Like */}
+      <section className="py-24 px-4">
+        <div className="container mx-auto max-w-5xl">
+          <motion.h2 className="text-foreground text-center mb-14 font-extrabold" style={{ fontSize: "clamp(2rem, 5vw, 3rem)", lineHeight: 1.15 }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+            What a Partnership Looks Like
+          </motion.h2>
+          <motion.div className="grid md:grid-cols-2 gap-8 mb-8" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+            <motion.div variants={fadeInUp} className="glass rounded-2xl p-8 border-l-4 border-l-primary">
+              <h3 className="text-lg font-bold text-foreground mb-5 flex items-center gap-2">
+                <CheckCircle className="text-primary" size={20} />
+                What Courtana Brings
+              </h3>
+              <ul className="space-y-3">
+                {[
+                  "Smart court hardware (cameras, displays) — installed free",
+                  "AI analysis engine + player app",
+                  "Event planning + co-promotion for 3 anchor events",
+                  "Co-branded marketing (social content, email campaigns)",
+                  "Revenue processing via Stripe",
+                  "Weekly performance reports",
+                  "Dedicated partner success contact",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+            <motion.div variants={fadeInUp} className="glass rounded-2xl p-8 border-l-4 border-l-border">
+              <h3 className="text-lg font-bold text-foreground mb-5 flex items-center gap-2">
+                <CheckCircle className="text-muted-foreground" size={20} />
+                What We'd Love From You
+              </h3>
+              <ul className="space-y-3">
+                {[
+                  "4-6 courts designated for smart court install",
+                  "Coaching staff intro session (1 hour)",
+                  "Permission for \"Powered by Courtana\" signage on smart courts",
+                  "One email to your member list about the launch",
+                  "15-min bi-weekly check-in during pilot",
+                  "Honest feedback on what's working",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground mt-2 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </motion.div>
+          <motion.p className="text-center text-muted-foreground text-sm italic" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+            This is a partnership, not a purchase order. We both invest, we both win.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Case Study: Peak Pickleball */}
+      <section className="py-24 px-4 bg-card/50">
+        <div className="container mx-auto max-w-4xl">
+          <motion.div className="glass rounded-2xl p-8 md:p-10 border border-accent/30" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+            <span className="text-sm font-bold px-4 py-1.5 rounded-full bg-accent/20 text-accent inline-block mb-5">🏆 Flagship Partner</span>
+            <h3 className="text-2xl md:text-3xl font-extrabold text-foreground mb-4">Peak Pickleball — 35 courts, 250 members</h3>
+            <p className="text-base text-muted-foreground leading-relaxed mb-6">
+              Peak launched their Courtana pilot in spring 2026. Within the first month: a 300-player tournament with live highlights on 4 courts, AI coaching clinics generating new revenue per session, and a grand opening event that became the talk of the local pickleball community.
+            </p>
+            <Button variant="outline" className="border-accent/30 text-accent hover:bg-accent/10 rounded-xl font-bold" asChild>
+              <a href="https://courtana-venue-connect.lovable.app" target="_blank" rel="noopener noreferrer">
+                See Peak's Portal →
+              </a>
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Part of Something Bigger */}
+      <section className="py-24 px-4">
+        <div className="container mx-auto max-w-5xl">
+          <motion.div className="glass rounded-2xl p-8 md:p-12 bg-card/80" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+            <div className="grid md:grid-cols-2 gap-10 items-center">
+              <div className="flex justify-center">
+                <EcosystemFlywheel compact />
+              </div>
+              <div>
+                <h3 className="text-2xl font-extrabold text-foreground mb-4">Part of Something Bigger</h3>
+                <p className="text-base text-muted-foreground leading-relaxed mb-6">
+                  When you partner with Courtana, you're not just getting cameras on your courts. You're joining a network of venues, coaches, brands, and players — all connected through smart court technology. Every highlight shared, every badge earned, every event booked strengthens the entire ecosystem.
+                </p>
+                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl font-bold" asChild>
+                  <Link to="/partners">
+                    Explore the Ecosystem →
+                  </Link>
+                </Button>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -384,28 +486,28 @@ const Landing = () => {
         <div className="container mx-auto max-w-3xl text-center relative z-10">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
             <motion.h2 variants={fadeInUp} className="text-foreground mb-4 font-extrabold" style={{ fontSize: "clamp(2rem, 5vw, 3rem)", lineHeight: 1.15 }}>
-              Ready to launch?
+              Let's prove it works — together.
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto">
-              April 7 is right around the corner. Let's make Peak the smartest courts in the state.
+              The pilot starts the moment you say yes. Hardware installed in days. First event within the week.
             </motion.p>
             <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
               <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl px-8 py-6 text-lg font-bold glow-green gap-3" asChild>
                 <a href="mailto:bill@courtana.com">
                   <Mail size={20} />
-                  Let's Go
+                  Start a Conversation
                 </a>
+              </Button>
+              <Button size="lg" variant="outline" className="border-border text-foreground hover:bg-secondary rounded-xl px-8 py-6 text-lg font-bold gap-3" asChild>
+                <Link to="/partners">
+                  <Users size={20} />
+                  View the Ecosystem
+                </Link>
               </Button>
               <Button size="lg" variant="outline" className="border-border text-foreground hover:bg-secondary rounded-xl px-8 py-6 text-lg font-bold gap-3" asChild>
                 <Link to="/dashboard">
                   <BarChart3 size={20} />
                   Pilot Dashboard
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" className="border-border text-foreground hover:bg-secondary rounded-xl px-8 py-6 text-lg font-bold gap-3" asChild>
-                <Link to="/schedule">
-                  <CalendarDays size={20} />
-                  View Calendar
                 </Link>
               </Button>
             </motion.div>

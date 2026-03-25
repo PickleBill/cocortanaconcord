@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from "recharts";
-import { Activity, DollarSign, Users, Camera, ExternalLink, Target } from "lucide-react";
+import { Activity, DollarSign, Users, Camera, ExternalLink, Target, Info } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -30,16 +30,17 @@ const revenueBySource = [
 ];
 
 const pilotEvents = [
-  { name: "Grand Opening — Dinks & Drinks", date: "May 9", capacity: 200, registered: 0, revenue: "$0", status: "Upcoming" },
-  { name: "Peak Spring Smash Tournament", date: "May 1–4", capacity: 300, registered: 0, revenue: "$0", status: "Registration Open" },
-  { name: "Courtana Court Preview: Coaches Only", date: "Apr 14", capacity: 10, registered: 0, revenue: "$0", status: "Upcoming" },
-  { name: "Open Play Happy Hour", date: "Apr 17+", capacity: 40, registered: 0, revenue: "$0", status: "Registration Open" },
-  { name: "AI Coaching Clinic: Third Shot Mastery", date: "Apr 22", capacity: 16, registered: 0, revenue: "$0", status: "Registration Open" },
-  { name: "Friday Night Lights: Live Broadcast", date: "May 16+", capacity: 32, registered: 0, revenue: "$0", status: "Upcoming" },
-  { name: "Charity Round Robin", date: "May 17", capacity: 24, registered: 0, revenue: "$0", status: "Upcoming" },
+  { name: "Launch Event", date: "Week 2", capacity: 200, registered: 0, revenue: "$0", status: "Planned" },
+  { name: "Staff Preview", date: "Week 1", capacity: 10, registered: 0, revenue: "$0", status: "Planned" },
+  { name: "Open Play Night", date: "Week 2+", capacity: 40, registered: 0, revenue: "$0", status: "Planned" },
+  { name: "AI Coaching Clinic", date: "Week 3", capacity: 16, registered: 0, revenue: "$0", status: "Planned" },
+  { name: "Community Tournament", date: "Week 4", capacity: 64, registered: 0, revenue: "$0", status: "Planned" },
+  { name: "Friday Night Showcase", date: "Week 5+", capacity: 32, registered: 0, revenue: "$0", status: "Planned" },
+  { name: "Charity Round Robin", date: "Week 6", capacity: 24, registered: 0, revenue: "$0", status: "Planned" },
 ];
 
 const statusColors: Record<string, string> = {
+  "Planned": "bg-blue-500/20 text-blue-400",
   "Upcoming": "bg-amber-500/20 text-amber-400",
   "Registration Open": "bg-primary/20 text-primary",
   "Sold Out": "bg-red-500/20 text-red-400",
@@ -56,11 +57,11 @@ const Dashboard = () => {
             <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <h1 className="section-title text-foreground">
-                  Peak Pickleball — <span className="text-gradient-green">Pilot Dashboard</span>
+                  Concord Pickleball — <span className="text-gradient-green">Pilot Dashboard</span>
                 </h1>
                 <div className="flex items-center gap-3 mt-2">
-                  <span className="text-xs px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 font-bold">Week 1 of 8</span>
-                  <span className="text-sm text-muted-foreground">April 7 — June 1, 2026</span>
+                  <span className="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 font-bold">Preview Mode</span>
+                  <span className="text-sm text-muted-foreground">Dates TBD — pending kickoff</span>
                 </div>
               </div>
               <a href="https://courtana.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/10 border border-primary/20 text-sm text-primary hover:bg-primary/20 transition-colors">
@@ -70,13 +71,28 @@ const Dashboard = () => {
             </motion.div>
           </motion.div>
 
+          {/* Preview Banner */}
+          <motion.div
+            className="glass rounded-2xl p-6 mb-8 border-l-4 border-l-primary bg-primary/5"
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+          >
+            <div className="flex items-start gap-3">
+              <Info className="text-primary flex-shrink-0 mt-0.5" size={20} />
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                This dashboard goes live the moment we install cameras. During the pilot, you'll see real-time data on court utilization, event revenue, player engagement, and coaching income.
+              </p>
+            </div>
+          </motion.div>
+
           {/* KPIs */}
           <motion.div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8" initial="hidden" animate="visible" variants={stagger}>
             {[
-              { label: "Sessions Recorded", value: "0", icon: Camera, sub: "Pilot starts April 7" },
-              { label: "Highlights Generated", value: "0", icon: Activity, sub: "Pilot starts April 7" },
-              { label: "Event Revenue", value: "$0", icon: DollarSign, sub: "Pilot starts April 7", accent: true },
-              { label: "Player Accounts", value: "0", icon: Users, sub: "Pilot starts April 7" },
+              { label: "Sessions Recorded", value: "0", icon: Camera, sub: "Awaiting pilot launch" },
+              { label: "Highlights Generated", value: "0", icon: Activity, sub: "Awaiting pilot launch" },
+              { label: "Event Revenue", value: "$0", icon: DollarSign, sub: "Awaiting pilot launch", accent: true },
+              { label: "Player Accounts", value: "0", icon: Users, sub: "Awaiting pilot launch" },
             ].map((k) => (
               <motion.div key={k.label} variants={fadeInUp} className={`glass rounded-2xl p-5 ${k.accent ? "border-accent/30 glow-green" : ""}`}>
                 <div className="flex items-center justify-between mb-3">
@@ -174,12 +190,12 @@ const Dashboard = () => {
                 <Target className="text-primary" size={20} />
                 Pilot Scorecard
               </h3>
-              <span className="text-xs px-4 py-1.5 rounded-full bg-cyan-500/20 text-cyan-400 font-bold">Starting Soon</span>
+              <span className="text-xs px-4 py-1.5 rounded-full bg-blue-500/20 text-blue-400 font-bold">Preview</span>
             </div>
             <div className="grid sm:grid-cols-3 gap-6">
               {[
                 { target: "15% utilization lift", current: "Measuring..." },
-                { target: "$2,000/mo revenue lift", current: "Pilot in progress" },
+                { target: "$1,400/mo revenue lift", current: "Pilot in progress" },
                 { target: "50+ player accounts", current: "0 accounts" },
               ].map((s) => (
                 <div key={s.target} className="bg-secondary/50 rounded-xl p-5">
