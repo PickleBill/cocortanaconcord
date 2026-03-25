@@ -15,6 +15,7 @@ export interface EventData {
   format: string;
   badge?: string;
   featured?: boolean;
+  revenueNote?: string;
 }
 
 export const events: EventData[] = [
