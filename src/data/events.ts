@@ -5,6 +5,7 @@ export interface EventData {
   longDescription: string[];
   date: string;
   time: string;
+  pilotWeek: string;
   price: number;
   spots: number;
   spotsTotal: number;
@@ -28,6 +29,7 @@ export const events: EventData[] = [
     ],
     date: "2026-06-01",
     time: "5:00 PM – 9:00 PM",
+    pilotWeek: "Week 2 of Pilot",
     price: 0,
     spots: 200,
     spotsTotal: 200,
@@ -50,6 +52,7 @@ export const events: EventData[] = [
     ],
     date: "2026-06-08",
     time: "10:00 AM – 12:00 PM",
+    pilotWeek: "Week 1 of Pilot",
     price: 0,
     spots: 10,
     spotsTotal: 10,
@@ -71,6 +74,7 @@ export const events: EventData[] = [
     ],
     date: "2026-06-11",
     time: "5:00 PM – 8:00 PM",
+    pilotWeek: "Week 3 of Pilot",
     price: 10,
     spots: 40,
     spotsTotal: 40,
@@ -91,6 +95,7 @@ export const events: EventData[] = [
     ],
     date: "2026-06-18",
     time: "6:00 PM – 7:30 PM",
+    pilotWeek: "Week 3 of Pilot",
     price: 25,
     spots: 16,
     spotsTotal: 16,
@@ -111,6 +116,7 @@ export const events: EventData[] = [
     ],
     date: "2026-06-27",
     time: "8:00 AM – 6:00 PM",
+    pilotWeek: "Week 4 of Pilot",
     price: 40,
     spots: 64,
     spotsTotal: 64,
@@ -131,6 +137,7 @@ export const events: EventData[] = [
     ],
     date: "2026-07-03",
     time: "7:00 PM – 10:00 PM",
+    pilotWeek: "Week 5 of Pilot",
     price: 5,
     spots: 32,
     spotsTotal: 32,
@@ -151,6 +158,7 @@ export const events: EventData[] = [
     ],
     date: "2026-07-11",
     time: "10:00 AM – 2:00 PM",
+    pilotWeek: "Week 6 of Pilot",
     price: 20,
     spots: 24,
     spotsTotal: 24,

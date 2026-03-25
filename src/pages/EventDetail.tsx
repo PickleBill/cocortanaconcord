@@ -69,7 +69,7 @@ const EventDetail = () => {
             <div className="flex flex-wrap gap-4 text-muted-foreground text-sm">
               <span className="flex items-center gap-2"><Calendar size={16} /> {format(parseISO(event.date), "EEEE, MMMM d, yyyy")}</span>
               <span className="flex items-center gap-2"><Clock size={16} /> {event.time}</span>
-              <span className="flex items-center gap-2"><MapPin size={16} /> Peak Pickleball</span>
+              <span className="flex items-center gap-2"><MapPin size={16} /> Concord Pickleball</span>
             </div>
           </motion.div>
         </div>

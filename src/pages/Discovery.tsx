@@ -14,11 +14,11 @@ import { calculateScores, type VenueData, type Scores, getStatusPill } from "@/l
 import { motion } from "framer-motion";
 
 const defaultData: VenueData = {
-  venueName: "Peak Pickleball",
-  courts: 12,
-  members: 450,
-  monthlyBookings: 1200,
-  monthlyEvents: 6,
+  venueName: "Concord Pickleball",
+  courts: 8,
+  members: 200,
+  monthlyBookings: 600,
+  monthlyEvents: 4,
   hasFnB: true,
   businessModel: ["memberships", "leagues", "court bookings", "open play"],
   biggestDriver: "memberships",

@@ -67,7 +67,7 @@ const Schedule = () => {
     const data: TimeBlock[][][] = [];
     for (let d = 0; d < 7; d++) {
       data[d] = [];
-      for (let c = 0; c < 6; c++) {
+      for (let c = 0; c < 8; c++) {
         data[d][c] = generateBlocks(d, c);
       }
     }
